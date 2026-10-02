@@ -12,7 +12,7 @@ if mode not in ("auto", "elysium", "cyberpunk"):
     mode = "auto"
 
 E = dict(
-    banner="./banner.svg", divider="./divider.svg", snake=f"{RAW}/snake-elysium.svg",
+    hero="./assets/hero-elysium.svg", footer="./assets/footer-elysium.svg", tag="elysium", snake=f"{RAW}/snake-elysium.svg",
     typing="https://readme-typing-svg.demolab.com?font=Cinzel&weight=600&size=22&duration=3500&pause=1200&color=F5D78E&center=true&vCenter=true&width=640&lines=Welcome+to+Elysium;First+Coding+Story;Spring+Boot+%C2%B7+React+%C2%B7+Spring+AI",
     badge=("12234A", "F5D78E", "8FD3FF"),
     card="bg_color=0B1426&border_color=E8C170&title_color=F5D78E&icon_color=8FD3FF&text_color=DCEBFF",
@@ -22,10 +22,9 @@ E = dict(
            snake="✦ 비행 궤적 (Contribution Snake)", quest="✦ 대표 퀘스트 (Featured Projects)"),
     quote=["빛의 땅 엘리시움에서 첫 코딩 이야기를 써 내려가는 중입니다.",
            "Java와 Spring으로 서버를 세우고, React로 화면을 그리며, Spring AI로 새로운 가능성을 실험합니다."],
-    footer="✦ 빛이 당신의 길을 비추기를 ✦",
 )
 C = dict(
-    banner="./banner-cyber.svg", divider="./divider-cyber.svg", snake=f"{RAW}/snake-cyber.svg",
+    hero="./assets/hero-cyber.svg", footer="./assets/footer-cyber.svg", tag="cyber", snake=f"{RAW}/snake-cyber.svg",
     typing="https://readme-typing-svg.demolab.com?font=Share+Tech+Mono&weight=600&size=22&duration=3000&pause=1000&color=FCEE0A&center=true&vCenter=true&width=640&lines=%3E+jack_in()%3B;First+Coding+Story;Spring+Boot+%2F%2F+React+%2F%2F+Spring+AI",
     badge=("0A0A0A", "FCEE0A", "FCEE0A"),
     card="bg_color=0A0A0A&border_color=FCEE0A&title_color=FCEE0A&icon_color=00F0FF&text_color=EDEDED",
@@ -35,7 +34,6 @@ C = dict(
            snake="▌ DATA STREAM // Contribution Snake", quest="▌ ACTIVE MISSIONS // Featured Projects"),
     quote=["네온이 켜진 사이버 공간에서 코드를 쓰는 중입니다.",
            "Java와 Spring으로 서버를 세우고, React로 화면을 그리며, Spring AI로 새로운 가능성을 실험합니다."],
-    footer="// END OF TRANSMISSION",
 )
 NEUTRAL = dict(intro="◆ exid", stack="◆ 장비 (Tech Stack)", stats="◆ GitHub Stats",
                snake="◆ Contribution Snake", quest="◆ 대표 프로젝트 (Featured Projects)")
@@ -63,7 +61,12 @@ def text(key):
     return t[key]
 
 
-divider = lambda: themed(lambda t: t["divider"], width="100%", alt="")
+divider = lambda: ""
+
+
+def plate(key):
+    alt = {"elysium": E, "cyberpunk": C}.get(mode, {"h": NEUTRAL})["h"][key]
+    return themed(lambda t: f"./assets/plate-{t['tag']}-{key}.svg", width="100%", alt=alt)
 
 STACK = [("Java", "openjdk", 0), ("Spring_Boot", "springboot", 0), ("MyBatis", None, 0), ("Spring_AI", "spring", 0),
          ("TypeScript", "typescript", 1), ("React", "react", 1), ("Vite", "vite", 1), ("Git", "git", 0)]
@@ -91,11 +94,12 @@ def switch_buttons():
 
 stats_card = lambda t, n: f"https://github-readme-stats.vercel.app/api/{n}&{t['card']}&border_radius=10"
 pin = lambda repo: themed(lambda t: f"https://github-readme-stats.vercel.app/api/pin/?username={OWNER}&repo={repo}&{t['card']}", alt=repo)
+
 U = f"https://github.com/{OWNER}"
 
 out = f'''<div align="center">
 
-{themed(lambda t: t["banner"], width="100%", alt="EXID")}
+{themed(lambda t: t["hero"], width="100%", alt="EXID")}
 
 <a href="{REPO}">{themed(lambda t: t["typing"], alt="typing")}</a>
 
@@ -103,14 +107,14 @@ out = f'''<div align="center">
 
 </div>
 
-## {head("intro")}
+{plate("intro")}
 
 > {text("quote")[0]}
 > {text("quote")[1]}
 
 {divider()}
 
-## {head("stack")}
+{plate("stack")}
 
 <p align="center">
 {chr(10).join(badge(*s) for s in STACK)}
@@ -118,7 +122,7 @@ out = f'''<div align="center">
 
 {divider()}
 
-## {head("stats")}
+{plate("stats")}
 
 <p align="center">
   {themed(lambda t: stats_card(t, f"top-langs/?username={OWNER}&layout=compact&hide_border=false"), height="170", alt="top languages")}
@@ -130,7 +134,7 @@ out = f'''<div align="center">
 
 {divider()}
 
-## {head("snake")}
+{plate("snake")}
 
 <p align="center">
   {themed(lambda t: t["snake"], alt="contribution snake")}
@@ -138,7 +142,7 @@ out = f'''<div align="center">
 
 {divider()}
 
-## {head("quest")}
+{plate("quest")}
 
 <p align="center">
   <a href="{U}/damso">{pin("damso")}</a>
@@ -158,9 +162,11 @@ out = f'''<div align="center">
 <sub>THEME SWITCH (owner only: opens an issue, submit it and the profile re-renders)</sub><br/>
   {switch_buttons()}
 
-<sub>{text("footer")}</sub>
+{themed(lambda t: t["footer"], width="100%", alt="footer")}
 
 </div>
 '''
+import re
+out = re.sub(r"\n{3,}", "\n\n", out)
 (root / "README.md").write_text(out, encoding="utf-8")
 print(f"README.md rendered ({mode}), {len(out)} bytes")
