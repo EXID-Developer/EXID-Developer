@@ -242,10 +242,11 @@ def hero_cyber():
 # ---------------------------------------------------------------- PLATES
 SECTIONS = {
     "intro": ("PROFILE", "PROFILE", "I", "01"),
-    "stack": ("LOADOUT", "LOADOUT", "II", "02"),
-    "stats": ("BATTLE LOG", "SYSTEM LOG", "III", "03"),
-    "snake": ("FLIGHT PATH", "DATA STREAM", "IV", "04"),
-    "quest": ("QUESTS", "MISSIONS", "V", "05"),
+    "sns": ("SNS LIST", "COMMS LINK", "II", "02"),
+    "stack": ("LOADOUT", "LOADOUT", "III", "03"),
+    "stats": ("BATTLE LOG", "SYSTEM LOG", "IV", "04"),
+    "snake": ("FLIGHT PATH", "DATA STREAM", "V", "05"),
+    "quest": ("QUESTS", "MISSIONS", "VI", "06"),
 }
 
 
