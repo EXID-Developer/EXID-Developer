@@ -2,7 +2,7 @@
 """Neon cyberpunk scenes (magenta / cyan / violet night city). Overwrites the *-cyber.svg assets."""
 import random
 
-from build_assets import IMPACT, MONO, SECTIONS, n, save, title3d, twinkle
+from build_assets import CHAR_BOX, IMPACT, MONO, SECTIONS, char_href, n, save, title3d, twinkle
 
 MAG, CYA, VIO, BLU, YEL = "#FF2BD6", "#00F0FF", "#9D4DFF", "#2D6BFF", "#FFE14D"
 WINDOW_COLORS = [CYA, CYA, CYA, MAG, MAG, MAG, BLU, YEL, "#FFFFFF"]
@@ -67,12 +67,47 @@ COMMON_DEFS = f'''<linearGradient id="bb1" x1="0" y1="0" x2="1" y2="1"><stop off
 <filter id="bl1"><feGaussianBlur stdDeviation=".8"/></filter><filter id="bl3"><feGaussianBlur stdDeviation="3"/></filter><filter id="bl6"><feGaussianBlur stdDeviation="6"/></filter>'''
 
 
+def tint(fid, hexcol, a):
+    r, g, b = (int(hexcol[i:i + 2], 16) / 255 for i in (1, 3, 5))
+    return (f'<filter id="{fid}" x="-10%" y="-10%" width="120%" height="120%"><feColorMatrix type="matrix" '
+            f'values="0 0 0 0 {r:.3f}  0 0 0 0 {g:.3f}  0 0 0 0 {b:.3f}  0 0 0 {a} 0"/></filter>')
+
+
+def char_cyber():
+    href, iw, ih = char_href("cyber")
+    if not href:
+        return "", ""
+    x, y, s = CHAR_BOX["cyber"]
+    s *= 705 / ih
+    w, h = iw * s, ih * s
+    defs = (f'<image id="chC" href="{href}" width="{n(w)}" height="{n(h)}"/>'
+            + tint("tC", CYA, .55) + tint("tV", VIO, .45) + tint("tM", MAG, .35)
+            + f'<filter id="rimC" x="-10%" y="-10%" width="120%" height="120%"><feDropShadow dx="-3" dy="0" stdDeviation="3" flood-color="{CYA}" flood-opacity=".8"/>'
+            f'<feDropShadow dx="3" dy="0" stdDeviation="4" flood-color="{MAG}" flood-opacity=".8"/></filter>'
+            '<clipPath id="slice"><rect x="-20" y="120" width="460" height="18">'
+            '<animate attributeName="y" values="120;120;60;250;250;160;160" keyTimes="0;.6;.62;.64;.8;.82;1" calcMode="discrete" dur="5s" repeatCount="indefinite"/></rect></clipPath>'
+            f'<radialGradient id="visor" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".95"/><stop offset=".4" stop-color="{CYA}" stop-opacity=".7"/><stop offset="1" stop-color="{CYA}" stop-opacity="0"/></radialGradient>')
+    trail = ""
+    for i, (fid, off) in enumerate([("tM", 66), ("tV", 44), ("tC", 22)]):
+        trail += (f'<use href="#chC" filter="url(#{fid})"><animateTransform attributeName="transform" type="translate" '
+                  f'values="{off} 0;{off + 8} 0;{off} 0" dur="{2.4 + i * .5}s" repeatCount="indefinite"/></use>')
+    body = f"""<g><animateTransform attributeName="transform" type="translate" values="{n(x)} {n(y)};{n(x)} {n(y - 6)};{n(x)} {n(y)}" dur="4.5s" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1" repeatCount="indefinite"/>
+<g opacity=".9">{trail}</g>
+<use href="#chC" filter="url(#rimC)"/>
+<g clip-path="url(#slice)" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0;1;0" keyTimes="0;.6;.62;.64;.66;.8;.82;1" calcMode="discrete" dur="5s" repeatCount="indefinite"/><use href="#chC"><animateTransform attributeName="transform" type="translate" values="0 0;0 0;-14 0;10 0;0 0;0 0;-8 0;0 0" keyTimes="0;.6;.62;.64;.66;.8;.82;1" calcMode="discrete" dur="5s" repeatCount="indefinite"/></use></g>
+<ellipse cx="{n(115 * s / .74)}" cy="{n(74 * s / .74)}" rx="46" ry="16" fill="url(#visor)" opacity=".6"><animate attributeName="opacity" values=".25;.8;.25;.25;.9;.25" keyTimes="0;.15;.3;.7;.75;1" dur="3s" repeatCount="indefinite"/></ellipse>
+</g>"""
+    return defs, body
+
+
 def hero():
     r = random.Random(77)
-    slits = "".join(f'<rect x="460" y="{268 + i * 16}" width="280" height="{n(2 + i * .8)}" fill="#000"/>' for i in range(-1, 6))
+    cdefs, cbody = char_cyber()
+    slits = "".join(f'<rect x="280" y="{268 + i * 16}" width="280" height="{n(2 + i * .8)}" fill="#000"/>' for i in range(-1, 6))
     svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 440" width="1200" height="440">
 <defs>
 {COMMON_DEFS}
+{cdefs}
 <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#04051a"/><stop offset=".45" stop-color="#1d1a7a"/><stop offset=".78" stop-color="#8a24c8"/><stop offset="1" stop-color="#1a0b3d"/></linearGradient>
 <linearGradient id="sun" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFB3F0"/><stop offset=".5" stop-color="{MAG}"/><stop offset="1" stop-color="#7A1FFF"/></linearGradient>
 <radialGradient id="sg" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="{MAG}" stop-opacity=".55"/><stop offset=".6" stop-color="{VIO}" stop-opacity=".2"/><stop offset="1" stop-color="{VIO}" stop-opacity="0"/></radialGradient>
@@ -86,30 +121,31 @@ def hero():
 <g clip-path="url(#cp)">
 <rect width="1200" height="440" fill="url(#sky)"/>
 {twinkle(r, 45, 10, 1190, 8, 170, "#DDEBFF")}
-<circle cx="600" cy="336" r="270" fill="url(#sg)"><animate attributeName="opacity" values=".7;1;.7" dur="4s" repeatCount="indefinite"/></circle>
-<g clip-path="url(#above)"><circle cx="600" cy="336" r="130" fill="url(#sun)" mask="url(#sm)"/></g>
+<circle cx="420" cy="336" r="270" fill="url(#sg)"><animate attributeName="opacity" values=".7;1;.7" dur="4s" repeatCount="indefinite"/></circle>
+<g clip-path="url(#above)"><circle cx="420" cy="336" r="130" fill="url(#sun)" mask="url(#sm)"/></g>
 <g clip-path="url(#above)">
 {skyline(r, 305, 40, 150, 18, 40, "#1c1470", .16, 4, 9, blink=.04)}
 <rect y="200" width="1200" height="145" fill="url(#fog)"><animate attributeName="opacity" values=".7;1;.7" dur="7s" repeatCount="indefinite"/></rect>
-{skyline(r, 325, 60, 190, 24, 54, "#100f48", .24, 9, 7, blink=.07, neon=True, lane=(420, 780))}
+{skyline(r, 325, 60, 190, 24, 54, "#100f48", .24, 9, 7, blink=.07, neon=True, lane=(240, 600))}
 <rect y="240" width="1200" height="105" fill="url(#fog)" opacity=".6"/>
-{skyline(r, 340, 90, 250, 30, 70, "#090a2c", .3, 14, 6, gap=4, blink=.1, neon=True, boards=True, lane=(430, 770))}
-{skyline(r, 352, 110, 280, 46, 96, "#04051a", .36, 20, 5, gap=10, blink=.12, neon=True, boards=True, lane=(400, 800))}
+{skyline(r, 340, 90, 250, 30, 70, "#090a2c", .3, 14, 6, gap=4, blink=.1, neon=True, boards=True, lane=(250, 590))}
+{skyline(r, 352, 110, 280, 46, 96, "#04051a", .36, 20, 5, gap=10, blink=.12, neon=True, boards=True, lane=(220, 620))}
 </g>
 <rect y="345" width="1200" height="95" fill="url(#street)"/>
 {reflections(r, 346, 440, 18)}
 <line x1="-20" y1="436" x2="720" y2="347" stroke="{MAG}" stroke-width="4" filter="url(#bl3)" opacity=".9"/>
 <line x1="-20" y1="436" x2="720" y2="347" stroke="#FFD6F7" stroke-width="1.2" stroke-dasharray="40 18"><animate attributeName="stroke-dashoffset" values="0;-58" dur="1.2s" repeatCount="indefinite"/></line>
 <rect y="344" width="1200" height="2" fill="url(#neonbar)" opacity=".95"/>
+{cbody}
 {rain(r, 80)}
-{title3d("EXID", 600, 196, 118, 16, IMPACT, 10, "#2a0a5e", "url(#face)", "#FFFFFF", MAG, style='font-style="italic"', weight="900")}
+{title3d("EXID", 420, 196, 118, 16, IMPACT, 10, "#2a0a5e", "url(#face)", "#FFFFFF", MAG, style='font-style="italic"', weight="900")}
 <g font-family="{IMPACT}" font-size="118" font-weight="900" font-style="italic" letter-spacing="16" text-anchor="middle">
-<text x="600" y="196" fill="{CYA}" opacity=".7"><animateTransform attributeName="transform" type="translate" values="0 0;0 0;-7 1;5 -2;0 0;0 0;-4 0;0 0" keyTimes="0;.5;.52;.54;.56;.8;.82;1" calcMode="discrete" dur="4s" repeatCount="indefinite"/>EXID</text>
-<text x="600" y="196" fill="{MAG}" opacity=".7"><animateTransform attributeName="transform" type="translate" values="0 0;0 0;7 -1;-5 2;0 0;0 0;4 0;0 0" keyTimes="0;.5;.52;.54;.56;.8;.82;1" calcMode="discrete" dur="4s" repeatCount="indefinite"/>EXID</text>
-<text x="600" y="196" fill="url(#face)" stroke="#FFFFFF" stroke-width="1.6" paint-order="stroke">EXID</text></g>
-<clipPath id="type"><rect x="300" y="362" width="0" height="34"><animate attributeName="width" values="0;600;600;0" keyTimes="0;.3;.92;1" dur="9s" repeatCount="indefinite"/></rect></clipPath>
-<g clip-path="url(#type)"><text x="300" y="386" font-family="{MONO}" font-size="22" font-weight="700" letter-spacing="5" fill="{CYA}" stroke="#04051a" stroke-width="3" paint-order="stroke">NETRUNNER // BACKEND DEVELOPER</text></g>
-<rect x="300" y="368" width="12" height="22" fill="{MAG}"><animate attributeName="x" values="300;850;850;300" keyTimes="0;.3;.92;1" dur="9s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;0;1" dur=".8s" repeatCount="indefinite"/></rect>
+<text x="420" y="196" fill="{CYA}" opacity=".7"><animateTransform attributeName="transform" type="translate" values="0 0;0 0;-7 1;5 -2;0 0;0 0;-4 0;0 0" keyTimes="0;.5;.52;.54;.56;.8;.82;1" calcMode="discrete" dur="4s" repeatCount="indefinite"/>EXID</text>
+<text x="420" y="196" fill="{MAG}" opacity=".7"><animateTransform attributeName="transform" type="translate" values="0 0;0 0;7 -1;-5 2;0 0;0 0;4 0;0 0" keyTimes="0;.5;.52;.54;.56;.8;.82;1" calcMode="discrete" dur="4s" repeatCount="indefinite"/>EXID</text>
+<text x="420" y="196" fill="url(#face)" stroke="#FFFFFF" stroke-width="1.6" paint-order="stroke">EXID</text></g>
+<clipPath id="type"><rect x="140" y="362" width="0" height="34"><animate attributeName="width" values="0;600;600;0" keyTimes="0;.3;.92;1" dur="9s" repeatCount="indefinite"/></rect></clipPath>
+<g clip-path="url(#type)"><text x="140" y="386" font-family="{MONO}" font-size="22" font-weight="700" letter-spacing="5" fill="{CYA}" stroke="#04051a" stroke-width="3" paint-order="stroke">NETRUNNER // BACKEND DEVELOPER</text></g>
+<rect x="140" y="368" width="12" height="22" fill="{MAG}"><animate attributeName="x" values="140;690;690;140" keyTimes="0;.3;.92;1" dur="9s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;0;1" dur=".8s" repeatCount="indefinite"/></rect>
 <g font-family="{MONO}" font-size="12" font-weight="700" fill="{CYA}"><text x="40" y="42">SYS://ONLINE<animate attributeName="opacity" values="1;1;.2;1;1" keyTimes="0;.5;.55;.6;1" dur="2s" repeatCount="indefinite"/></text><text x="1160" y="42" text-anchor="end" fill="{MAG}">BUILD 2026.10</text></g>
 <rect width="1200" height="40" y="-40" fill="url(#bar)"><animateTransform attributeName="transform" type="translate" values="0 0;0 500" dur="5s" repeatCount="indefinite"/></rect>
 </g>
