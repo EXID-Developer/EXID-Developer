@@ -2,7 +2,7 @@
 """Render README.md for the theme stored in theme.txt (auto | elysium | cyberpunk)."""
 import pathlib
 
-OWNER = "ryuwook42-byte"
+OWNER = "EXID-Developer"
 REPO = f"https://github.com/{OWNER}/{OWNER}"
 RAW = f"https://raw.githubusercontent.com/{OWNER}/{OWNER}/output"
 root = pathlib.Path(__file__).parent
