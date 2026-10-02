@@ -11,7 +11,7 @@ on:
         default: auto
         options: [auto, elysium, cyberpunk]
   push:
-    paths: [theme.txt, build_readme.py, build_assets.py]
+    paths: [theme.txt, build_readme.py, build_assets.py, cyber.py]
 
 permissions:
   contents: write
@@ -38,7 +38,7 @@ jobs:
           if [ -n "$T" ]; then
             case "$T" in auto|elysium|cyberpunk) echo "$T" > theme.txt ;; *) echo "invalid theme"; exit 1 ;; esac
           fi
-      - run: python3 build_assets.py && python3 build_readme.py
+      - run: python3 build_assets.py && python3 cyber.py && python3 build_readme.py
       - name: Commit
         run: |
           git config user.name "github-actions[bot]"
