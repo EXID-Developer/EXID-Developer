@@ -25,11 +25,11 @@ E = dict(
 )
 C = dict(
     hero="./assets/hero-cyber.svg", footer="./assets/footer-cyber.svg", tag="cyber", snake=f"{RAW}/snake-cyber.svg",
-    typing="https://readme-typing-svg.demolab.com?font=Share+Tech+Mono&weight=600&size=22&duration=3000&pause=1000&color=FCEE0A&center=true&vCenter=true&width=640&lines=%3E+jack_in()%3B;First+Coding+Story;Spring+Boot+%2F%2F+React+%2F%2F+Spring+AI",
-    badge=("0A0A0A", "FCEE0A", "FCEE0A"),
-    card="bg_color=0A0A0A&border_color=FCEE0A&title_color=FCEE0A&icon_color=00F0FF&text_color=EDEDED",
-    streak="background=0A0A0A&border=FCEE0A&ring=FCEE0A&fire=FCEE0A&currStreakLabel=FCEE0A&sideLabels=00F0FF&currStreakNum=FFFFFF&sideNums=FFFFFF&dates=9A9A9A",
-    views="color=FCEE0A&labelColor=0A0A0A", active="FCEE0A",
+    typing="https://readme-typing-svg.demolab.com?font=Share+Tech+Mono&weight=600&size=22&duration=3000&pause=1000&color=00F0FF&center=true&vCenter=true&width=640&lines=%3E+jack_in()%3B;First+Coding+Story;Spring+Boot+%2F%2F+React+%2F%2F+Spring+AI",
+    badge=("0A0A2E", "FF2BD6", "00F0FF"),
+    card="bg_color=0A0A2E&border_color=FF2BD6&title_color=00F0FF&icon_color=FF2BD6&text_color=DDEBFF",
+    streak="background=0A0A2E&border=FF2BD6&ring=00F0FF&fire=FF2BD6&currStreakLabel=00F0FF&sideLabels=FF2BD6&currStreakNum=FFFFFF&sideNums=FFFFFF&dates=9FA8D8",
+    views="color=FF2BD6&labelColor=0A0A2E", active="FF2BD6",
     h=dict(intro="▌ 사이버 공간의 개발자, exid", stack="▌ LOADOUT // Tech Stack", stats="▌ SYSTEM LOG // GitHub Stats",
            snake="▌ DATA STREAM // Contribution Snake", quest="▌ ACTIVE MISSIONS // Featured Projects"),
     quote=["네온이 켜진 사이버 공간에서 코드를 쓰는 중입니다.",
@@ -89,7 +89,7 @@ def switch_buttons():
         href = f"{REPO}/issues/new?title=theme%3A{key}&body=Submit+this+issue+to+switch+the+profile+theme+%28owner+only%29."
         img = f"https://img.shields.io/badge/{label}-{msg}-{col}?style=flat-square&labelColor=1a1a1a"
         return f'<a href="{href}"><img src="{img}" alt="{label}"/></a>'
-    return "\n  ".join([btn("AUTO", "auto", "8FD3FF"), btn("ELYSIUM", "elysium", "F5D78E"), btn("CYBERPUNK", "cyberpunk", "FCEE0A")])
+    return "\n  ".join([btn("AUTO", "auto", "8FD3FF"), btn("ELYSIUM", "elysium", "F5D78E"), btn("CYBERPUNK", "cyberpunk", "FF2BD6")])
 
 
 stats_card = lambda t, n: f"https://github-readme-stats.vercel.app/api/{n}&{t['card']}&border_radius=10"
