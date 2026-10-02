@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Generate layered, 3D-style SVG scenes (hero / section plates / footer) for both themes."""
+import base64
 import pathlib
 import random
 
@@ -16,6 +17,47 @@ def n(x):
 
 def save(name, svg):
     (OUT / name).write_text(svg, encoding="utf-8")
+
+
+def char_href(theme):
+    """Character art lives in assets/src/char-<theme>.webp and is embedded so it works inside <img>."""
+    p = OUT / "src" / f"char-{theme}.webp"
+    if not p.exists():
+        return None, 0, 0
+    from PIL import Image
+    w, h = Image.open(p).size
+    return "data:image/webp;base64," + base64.b64encode(p.read_bytes()).decode(), w, h
+
+
+CHAR_BOX = dict(elysium=(782, -8, .74), cyber=(796, -10, .74))  # x, y, scale (relative to 705px-tall art)
+
+
+def char_elysium(r):
+    href, iw, ih = char_href("elysium")
+    if not href:
+        return "", ""
+    x, y, s = CHAR_BOX["elysium"]
+    s *= 705 / ih
+    w, h = iw * s, ih * s
+    cx, cy = x + w / 2, y + h * .42
+    defs = (f'<image id="chE" href="{href}" width="{n(w)}" height="{n(h)}"/>'
+            '<filter id="glowE" x="-20%" y="-20%" width="140%" height="140%"><feColorMatrix type="matrix" '
+            'values="0 0 0 0 1  0 0 0 0 .97  0 0 0 0 .86  0 0 0 1 0"/><feGaussianBlur stdDeviation="10"/></filter>'
+            '<filter id="litE"><feColorMatrix type="matrix" values="1.25 0 0 0 .08  0 1.25 0 0 .08  0 0 1.3 0 .12  0 0 0 1 0"/></filter>'
+            '<radialGradient id="auraE" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".85"/>'
+            '<stop offset=".35" stop-color="#CFE2FF" stop-opacity=".45"/><stop offset="1" stop-color="#9DB8FF" stop-opacity="0"/></radialGradient>')
+    sparks = "".join(
+        f'<path d="M0 -{n(k)}L{n(k * .25)} 0L0 {n(k)}L-{n(k * .25)} 0Z" fill="#FFFFFF" transform="translate({n(r.uniform(x + 10, x + w - 10))} {n(r.uniform(15, 300))})">'
+        f'<animate attributeName="opacity" values="0;1;0" dur="{n(r.uniform(1.8, 3.6))}s" begin="{n(r.uniform(0, 3))}s" repeatCount="indefinite"/></path>'
+        for k in [r.choice([4, 6, 8]) for _ in range(16)])
+    body = f"""<ellipse cx="{n(cx)}" cy="{n(cy)}" rx="{n(w * .62)}" ry="{n(h * .5)}" fill="url(#auraE)"><animate attributeName="opacity" values=".55;.95;.55" dur="5s" repeatCount="indefinite"/></ellipse>
+<g><animateTransform attributeName="transform" type="translate" values="{n(x)} {n(y)};{n(x)} {n(y - 8)};{n(x)} {n(y)}" dur="6s" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1" repeatCount="indefinite"/>
+<use href="#chE" filter="url(#glowE)" opacity=".55"><animate attributeName="opacity" values=".35;.75;.35" dur="5s" repeatCount="indefinite"/></use>
+<use href="#chE"/>
+<use href="#chE" filter="url(#litE)" opacity="0"><animate attributeName="opacity" values="0;0;.45;0;0" keyTimes="0;.55;.7;.85;1" dur="7s" repeatCount="indefinite"/></use>
+</g>
+{sparks}"""
+    return defs, body
 
 
 def twinkle(r, count, x0, x1, y0, y1, color="#FFF3C4"):
@@ -90,8 +132,9 @@ def feathers(side_x, y, sc, flip):
 
 def hero_elysium():
     r = random.Random(5)
-    rays = "".join(f'<polygon points="600,300 {n(600 + 900 * __import__("math").cos(a))},{n(300 + 900 * __import__("math").sin(a))} '
-                   f'{n(600 + 900 * __import__("math").cos(a + .07))},{n(300 + 900 * __import__("math").sin(a + .07))}" fill="#FFF3C4" opacity=".11"/>'
+    cdefs, cbody = char_elysium(random.Random(11))
+    rays = "".join(f'<polygon points="430,300 {n(430 + 900 * __import__("math").cos(a))},{n(300 + 900 * __import__("math").sin(a))} '
+                   f'{n(430 + 900 * __import__("math").cos(a + .07))},{n(300 + 900 * __import__("math").sin(a + .07))}" fill="#FFF3C4" opacity=".11"/>'
                    for a in [i * 6.2832 / 16 for i in range(16)])
     svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 440" width="1200" height="440">
 <defs>
@@ -102,30 +145,31 @@ def hero_elysium():
 <linearGradient id="turf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#bff2dc"/><stop offset="1" stop-color="#6fc9a8"/></linearGradient>
 <linearGradient id="wing" x1="1" y1="0" x2="0" y2="0"><stop offset="0" stop-color="#FFF8DC" stop-opacity=".95"/><stop offset=".55" stop-color="#CFE8FF" stop-opacity=".4"/><stop offset="1" stop-color="#8FD3FF" stop-opacity="0"/></linearGradient>
 <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFBE6"/><stop offset=".45" stop-color="#F8DC93"/><stop offset="1" stop-color="#C99A3E"/></linearGradient>
-<linearGradient id="shine" gradientUnits="userSpaceOnUse" x1="-300" y1="0" x2="-150" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".95"/><stop offset="1" stop-color="#fff" stop-opacity="0"/><animate attributeName="x1" values="300;300;900;900" keyTimes="0;.55;.8;1" dur="7s" repeatCount="indefinite"/><animate attributeName="x2" values="450;450;1050;1050" keyTimes="0;.55;.8;1" dur="7s" repeatCount="indefinite"/></linearGradient>
+<linearGradient id="shine" gradientUnits="userSpaceOnUse" x1="-300" y1="0" x2="-150" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".95"/><stop offset="1" stop-color="#fff" stop-opacity="0"/><animate attributeName="x1" values="130;130;730;730" keyTimes="0;.55;.8;1" dur="7s" repeatCount="indefinite"/><animate attributeName="x2" values="280;280;880;880" keyTimes="0;.55;.8;1" dur="7s" repeatCount="indefinite"/></linearGradient>
 <filter id="bl1"><feGaussianBlur stdDeviation=".8"/></filter><filter id="bl6"><feGaussianBlur stdDeviation="6"/></filter><filter id="bl9"><feGaussianBlur stdDeviation="9"/></filter>
-<clipPath id="cp"><rect width="1200" height="440"/></clipPath>{CLOUD}
+<clipPath id="cp"><rect width="1200" height="440"/></clipPath>{CLOUD}{cdefs}
 </defs>
 <g clip-path="url(#cp)">
 <rect width="1200" height="440" fill="url(#sky)"/>
 {twinkle(r, 70, 10, 1190, 8, 220)}
-<g><animateTransform attributeName="transform" type="rotate" values="0 600 300;360 600 300" dur="170s" repeatCount="indefinite"/>{rays}</g>
-<circle cx="600" cy="300" r="270" fill="url(#halo)"><animate attributeName="opacity" values=".75;1;.75" dur="6s" repeatCount="indefinite"/></circle>
+<g><animateTransform attributeName="transform" type="rotate" values="0 430 300;360 430 300" dur="170s" repeatCount="indefinite"/>{rays}</g>
+<circle cx="430" cy="300" r="270" fill="url(#halo)"><animate attributeName="opacity" values=".75;1;.75" dur="6s" repeatCount="indefinite"/></circle>
 {cloud_layer(r, 7, 250, 330, .9, 1.5, "#dfeaf8", .55, 110, "bl9")}
-{island(1010, 120, .42, .6, 7, 0)}{island(215, 105, .38, .6, 8, 1)}{island(880, 215, .3, .5, 9, 2)}
+{island(690, 92, .34, .6, 7, 0)}{island(150, 105, .38, .6, 8, 1)}
 {cloud_layer(r, 6, 280, 350, 1.1, 1.8, "#ffffff", .6, 75, "bl9")}
-{island(95, 215, .95, 1, 6.5, 0)}{island(1105, 235, 1.05, 1, 7.5, 1.5)}
-{feathers(470, 225, 1.15, False)}{feathers(730, 225, 1.15, True)}
-<circle cx="600" cy="205" r="165" fill="none" stroke="#F5D78E" stroke-opacity=".5" stroke-dasharray="3 9"><animateTransform attributeName="transform" type="rotate" values="0 600 205;360 600 205" dur="60s" repeatCount="indefinite"/></circle>
-<circle cx="600" cy="205" r="182" fill="none" stroke="#FFF3C4" stroke-opacity=".28" stroke-width="1"/>
-{title3d("EXID", 600, 246, 120, 20, SERIF, 9, "#6d4d14", "url(#gold)", "#fff6d6", "#FFE9A8")}
-<text x="600" y="246" text-anchor="middle" font-family="{SERIF}" font-size="120" font-weight="700" letter-spacing="20" fill="url(#shine)">EXID</text>
-<g stroke="#F5D78E" stroke-opacity=".85"><path d="M330 300H520M680 300H870"/></g>
-<g fill="#F5D78E"><path d="M600 293l7 7-7 7-7-7z"/><path d="M522 300l-6-3v6z"/><path d="M678 300l6-3v6z"/></g>
-<text x="601" y="307" text-anchor="middle" font-family="{SERIF}" font-size="16" letter-spacing="1" fill="#0b1630" opacity=".0"> </text>
-<text x="600" y="346" text-anchor="middle" font-family="{SERIF}" font-size="17" font-weight="700" letter-spacing="9" fill="#FFFFFF" filter="url(#bl6)" opacity=".95">DAEVA OF ELYSIA  ·  BACKEND DEVELOPER</text>
-<text x="600" y="346" text-anchor="middle" font-family="{SERIF}" font-size="17" font-weight="700" letter-spacing="9" fill="#10204a">DAEVA OF ELYSIA  ·  BACKEND DEVELOPER</text>
+{island(70, 225, .9, 1, 6.5, 0)}
+{feathers(300, 225, 1.15, False)}{feathers(560, 225, 1.15, True)}
+<circle cx="430" cy="205" r="165" fill="none" stroke="#F5D78E" stroke-opacity=".5" stroke-dasharray="3 9"><animateTransform attributeName="transform" type="rotate" values="0 430 205;360 430 205" dur="60s" repeatCount="indefinite"/></circle>
+<circle cx="430" cy="205" r="182" fill="none" stroke="#FFF3C4" stroke-opacity=".28" stroke-width="1"/>
+{title3d("EXID", 430, 246, 120, 20, SERIF, 9, "#6d4d14", "url(#gold)", "#fff6d6", "#FFE9A8")}
+<text x="430" y="246" text-anchor="middle" font-family="{SERIF}" font-size="120" font-weight="700" letter-spacing="20" fill="url(#shine)">EXID</text>
+<g stroke="#F5D78E" stroke-opacity=".85"><path d="M160 300H350M510 300H700"/></g>
+<g fill="#F5D78E"><path d="M430 293l7 7-7 7-7-7z"/><path d="M352 300l-6-3v6z"/><path d="M508 300l6-3v6z"/></g>
+<text x="431" y="307" text-anchor="middle" font-family="{SERIF}" font-size="16" letter-spacing="1" fill="#0b1630" opacity=".0"> </text>
+<text x="430" y="346" text-anchor="middle" font-family="{SERIF}" font-size="17" font-weight="700" letter-spacing="6" fill="#FFFFFF" filter="url(#bl6)" opacity=".95">DAEVA OF ELYSIA  ·  BACKEND DEVELOPER</text>
+<text x="430" y="346" text-anchor="middle" font-family="{SERIF}" font-size="17" font-weight="700" letter-spacing="6" fill="#10204a">DAEVA OF ELYSIA  ·  BACKEND DEVELOPER</text>
 {motes(r, 30, "#FFE9A8", 300, 420)}
+{cbody}
 {cloud_layer(r, 6, 400, 450, 1.7, 2.6, "#ffffff", .95, 38, "bl9")}
 </g>
 <rect width="1200" height="440" fill="url(#vig)"/>
