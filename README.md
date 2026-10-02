@@ -33,7 +33,7 @@
 ## ✦ 전투 기록 (GitHub Stats)
 
 <p align="center">
-  <img height="170" src="https://github-readme-stats.vercel.app/api?username=ryuwook42-byte&show_icons=true&hide_border=false&bg_color=0B1426&border_color=E8C170&title_color=F5D78E&icon_color=8FD3FF&text_color=DCEBFF&ring_color=F5D78E&border_radius=10&title_color=F5D78E" alt="stats"/>
+
   <img height="170" src="https://github-readme-stats.vercel.app/api/top-langs/?username=ryuwook42-byte&layout=compact&hide_border=false&bg_color=0B1426&border_color=E8C170&title_color=F5D78E&text_color=DCEBFF&border_radius=10" alt="top languages"/>
 </p>
 
