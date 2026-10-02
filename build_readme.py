@@ -18,7 +18,7 @@ E = dict(
     card="bg_color=0B1426&border_color=E8C170&title_color=F5D78E&icon_color=8FD3FF&text_color=DCEBFF",
     streak="background=0B1426&border=E8C170&ring=F5D78E&fire=F5D78E&currStreakLabel=F5D78E&sideLabels=8FD3FF&currStreakNum=FFFFFF&sideNums=FFFFFF&dates=9FB6D9",
     views="color=E8C170&labelColor=12234A", active="F5D78E",
-    h=dict(intro="✦ 날개를 펼친 개발자, exid", stack="✦ 장비 (Tech Stack)", stats="✦ 전투 기록 (GitHub Stats)",
+    h=dict(sns="✦ 연락처 (SNS List)", intro="✦ 날개를 펼친 개발자, exid", stack="✦ 장비 (Tech Stack)", stats="✦ 전투 기록 (GitHub Stats)",
            snake="✦ 비행 궤적 (Contribution Snake)", quest="✦ 대표 퀘스트 (Featured Projects)"),
     quote=["빛의 땅 엘리시움에서 첫 코딩 이야기를 써 내려가는 중입니다.",
            "Java와 Spring으로 서버를 세우고, React로 화면을 그리며, Spring AI로 새로운 가능성을 실험합니다."],
@@ -30,12 +30,12 @@ C = dict(
     card="bg_color=0A0A2E&border_color=FF2BD6&title_color=00F0FF&icon_color=FF2BD6&text_color=DDEBFF",
     streak="background=0A0A2E&border=FF2BD6&ring=00F0FF&fire=FF2BD6&currStreakLabel=00F0FF&sideLabels=FF2BD6&currStreakNum=FFFFFF&sideNums=FFFFFF&dates=9FA8D8",
     views="color=FF2BD6&labelColor=0A0A2E", active="FF2BD6",
-    h=dict(intro="▌ 사이버 공간의 개발자, exid", stack="▌ LOADOUT // Tech Stack", stats="▌ SYSTEM LOG // GitHub Stats",
+    h=dict(sns="▌ COMMS LINK // SNS List", intro="▌ 사이버 공간의 개발자, exid", stack="▌ LOADOUT // Tech Stack", stats="▌ SYSTEM LOG // GitHub Stats",
            snake="▌ DATA STREAM // Contribution Snake", quest="▌ ACTIVE MISSIONS // Featured Projects"),
     quote=["네온이 켜진 사이버 공간에서 코드를 쓰는 중입니다.",
            "Java와 Spring으로 서버를 세우고, React로 화면을 그리며, Spring AI로 새로운 가능성을 실험합니다."],
 )
-NEUTRAL = dict(intro="◆ exid", stack="◆ 장비 (Tech Stack)", stats="◆ GitHub Stats",
+NEUTRAL = dict(sns="◆ SNS List", intro="◆ exid", stack="◆ 장비 (Tech Stack)", stats="◆ GitHub Stats",
                snake="◆ Contribution Snake", quest="◆ 대표 프로젝트 (Featured Projects)")
 
 
@@ -95,7 +95,20 @@ def switch_buttons():
 stats_card = lambda t, n: f"https://github-readme-stats.vercel.app/api/{n}&{t['card']}&border_radius=10"
 pin = lambda repo: themed(lambda t: f"https://github-readme-stats.vercel.app/api/pin/?username={OWNER}&repo={repo}&{t['card']}", alt=repo)
 
+trophy = lambda t: (f"https://github-profile-trophy.vercel.app/?username={OWNER}&theme="
+                    f"{'radical' if t is C else 'gruvbox'}&no-frame=true&no-bg=true&row=1&column=6&margin-w=8")
+click = lambda href: f'<a href="{href}">' + themed(lambda t: f"https://img.shields.io/badge/Click!_Me!-{t['active']}?style=for-the-badge", alt="Click Me") + "</a>"
+
 U = f"https://github.com/{OWNER}"
+
+def sns_badge(name, logo, href, ci):
+    def url(t):
+        return f"https://img.shields.io/badge/{name}-{t['badge'][0]}?style=for-the-badge&logo={logo}&logoColor={t['badge'][ci]}"
+    return f'<a href="{href}">{themed(url, alt=name)}</a>'
+
+
+SNS = "\n  ".join([sns_badge("GitHub", "github", U, 1), sns_badge("Repositories", "gitbook", U + "?tab=repositories", 2),
+                   sns_badge("Stars", "starship", U + "?tab=stars", 1)])
 
 out = f'''<div align="center">
 
@@ -103,44 +116,55 @@ out = f'''<div align="center">
 
 <a href="{REPO}">{themed(lambda t: t["typing"], alt="typing")}</a>
 
-{divider()}
-
 </div>
 
 {plate("intro")}
 
-> {text("quote")[0]}
-> {text("quote")[1]}
+<h3 align="center">"Think with your code!"</h3>
 
-{divider()}
+<p align="center">
+{text("quote")[0]}<br/>
+{text("quote")[1]}
+</p>
+
+{plate("sns")}
+
+<p align="center">
+  {SNS}
+</p>
 
 {plate("stack")}
 
+<details open>
+<summary><b>Tech Stack (click to fold)</b></summary>
+<br/>
 <p align="center">
 {chr(10).join(badge(*s) for s in STACK)}
 </p>
-
-{divider()}
+</details>
 
 {plate("stats")}
 
 <p align="center">
-  {themed(lambda t: stats_card(t, f"top-langs/?username={OWNER}&layout=compact&hide_border=false"), height="170", alt="top languages")}
+  {themed(lambda t: trophy(t), alt="trophies")}
 </p>
 
-<p align="center">
+<table align="center">
+<tr>
+<td align="center">
   {themed(lambda t: f"https://streak-stats.demolab.com?user={OWNER}&{t['streak']}&hide_border=false", alt="streak")}
-</p>
-
-{divider()}
+</td>
+<td align="center">
+  {themed(lambda t: stats_card(t, f"top-langs/?username={OWNER}&layout=compact&hide_border=false"), height="170", alt="top languages")}
+</td>
+</tr>
+</table>
 
 {plate("snake")}
 
 <p align="center">
   {themed(lambda t: t["snake"], alt="contribution snake")}
 </p>
-
-{divider()}
 
 {plate("quest")}
 
@@ -153,7 +177,10 @@ out = f'''<div align="center">
   <a href="{U}/SpringBootMyBatis">{pin("SpringBootMyBatis")}</a>
 </p>
 
-{divider()}
+<p align="center">
+공부 기록이 궁금하다면 &gt;&gt; {click(U + "/SpringAiBasic")}<br/>
+진행 중인 프로젝트가 궁금하다면 &gt;&gt; {click(U + "/damso")}
+</p>
 
 <div align="center">
 
