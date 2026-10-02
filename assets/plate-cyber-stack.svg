@@ -1,15 +1,22 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 92" width="1200" height="92">
 <defs>
-<pattern id="haz" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="8" height="16" fill="#FCEE0A"/></pattern>
-<pattern id="scan" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="4" height="1" fill="#000" opacity=".45"/></pattern>
+<linearGradient id="pl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#14125a"/><stop offset="1" stop-color="#0a0a2e"/></linearGradient>
+<linearGradient id="nb" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#FF2BD6"/><stop offset=".5" stop-color="#9D4DFF"/><stop offset="1" stop-color="#00F0FF"/></linearGradient>
+<linearGradient id="blk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF2BD6"/><stop offset="1" stop-color="#7A1FFF"/></linearGradient>
+<pattern id="scan" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="4" height="1" fill="#000" opacity=".4"/></pattern>
+<filter id="glow" x="-5%" y="-40%" width="110%" height="180%"><feDropShadow dx="0" dy="0" stdDeviation="5" flood-color="#FF2BD6" flood-opacity=".8"/></filter>
 </defs>
-<polygon points="34,22 1180,22 1194,38 1194,82 54,82 34,64" fill="#5a5300"/>
-<polygon points="26,14 1172,14 1186,30 1186,74 46,74 26,56" fill="#0b0b0b" stroke="#FCEE0A" stroke-width="2.4"/>
-<polygon points="26,14 130,14 130,74 46,74 26,56" fill="#FCEE0A"/>
-<text x="78" y="55" text-anchor="middle" font-family="Impact, 'Arial Black', 'Helvetica Neue', sans-serif" font-size="34" font-weight="900" fill="#0a0a0a">02</text>
-<text x="154" y="56" font-family="Impact, 'Arial Black', 'Helvetica Neue', sans-serif" font-size="34" letter-spacing="5" fill="#FCEE0A" opacity=".95">LOADOUT</text>
-<rect x="154" y="64" width="120" height="3" fill="#FCEE0A"><animate attributeName="width" values="40;260;120;40" keyTimes="0;.4;.6;1" dur="3s" repeatCount="indefinite"/></rect>
-<rect x="1000" y="24" width="170" height="40" fill="url(#haz)" opacity=".9"/><rect x="1000" y="24" width="170" height="40" fill="#0b0b0b" opacity=".35"/>
-<text x="990" y="50" text-anchor="end" font-family="'Courier New', Courier, monospace" font-size="14" font-weight="700" fill="#FCEE0A"> //<animate attributeName="opacity" values="1;1;.2;1" keyTimes="0;.6;.65;1" dur="2s" repeatCount="indefinite"/></text>
+<g filter="url(#glow)"><polygon points="26,14 1172,14 1186,30 1186,74 46,74 26,56" fill="url(#pl)" stroke="url(#nb)" stroke-width="2.4"/></g>
+<polygon points="26,14 130,14 130,74 46,74 26,56" fill="url(#blk)"/>
+<text x="78" y="55" text-anchor="middle" font-family="Impact, 'Arial Black', 'Helvetica Neue', sans-serif" font-size="34" font-weight="900" fill="#FFFFFF">02</text>
+<text x="156" y="57" font-family="Impact, 'Arial Black', 'Helvetica Neue', sans-serif" font-size="34" letter-spacing="5" fill="#FF2BD6" opacity=".85">LOADOUT</text>
+<text x="154" y="56" font-family="Impact, 'Arial Black', 'Helvetica Neue', sans-serif" font-size="34" letter-spacing="5" fill="#00F0FF" opacity=".85">LOADOUT</text>
+<text x="155" y="56" font-family="Impact, 'Arial Black', 'Helvetica Neue', sans-serif" font-size="34" letter-spacing="5" fill="#FFFFFF">LOADOUT</text>
+<rect x="154" y="64" width="120" height="3" fill="url(#nb)"><animate attributeName="width" values="40;260;120;40" keyTimes="0;.4;.6;1" dur="3s" repeatCount="indefinite"/></rect>
+<g fill="#00F0FF"><rect x="1010" y="30" width="6" height="28"><animate attributeName="height" values="28;10;22;28" dur="1.9s" repeatCount="indefinite"/><animate attributeName="y" values="30;48;36;30" dur="1.9s" repeatCount="indefinite"/></rect>
+<rect x="1024" y="30" width="6" height="28" fill="#FF2BD6"><animate attributeName="height" values="12;28;8;12" dur="1.5s" repeatCount="indefinite"/><animate attributeName="y" values="46;30;50;46" dur="1.5s" repeatCount="indefinite"/></rect>
+<rect x="1038" y="30" width="6" height="28" fill="#9D4DFF"><animate attributeName="height" values="22;8;28;22" dur="2.3s" repeatCount="indefinite"/><animate attributeName="y" values="36;50;30;36" dur="2.3s" repeatCount="indefinite"/></rect>
+<rect x="1052" y="30" width="6" height="28"><animate attributeName="height" values="18;28;12;18" dur="1.7s" repeatCount="indefinite"/><animate attributeName="y" values="40;30;46;40" dur="1.7s" repeatCount="indefinite"/></rect></g>
+<text x="1160" y="50" text-anchor="end" font-family="'Courier New', Courier, monospace" font-size="14" font-weight="700" fill="#00F0FF">//<animate attributeName="opacity" values="1;1;.2;1" keyTimes="0;.6;.65;1" dur="2s" repeatCount="indefinite"/></text>
 <rect x="26" y="14" width="1160" height="60" fill="url(#scan)"/>
 </svg>
