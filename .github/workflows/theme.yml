@@ -11,7 +11,7 @@ on:
         default: auto
         options: [auto, elysium, cyberpunk]
   push:
-    paths: [theme.txt, build_readme.py]
+    paths: [theme.txt, build_readme.py, build_assets.py]
 
 permissions:
   contents: write
@@ -38,12 +38,12 @@ jobs:
           if [ -n "$T" ]; then
             case "$T" in auto|elysium|cyberpunk) echo "$T" > theme.txt ;; *) echo "invalid theme"; exit 1 ;; esac
           fi
-      - run: python3 build_readme.py
+      - run: python3 build_assets.py && python3 build_readme.py
       - name: Commit
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add theme.txt README.md
+          git add theme.txt README.md assets
           git diff --cached --quiet || git commit -m "Render README (theme: $(cat theme.txt))"
           git push
       - name: Close the switch issue
