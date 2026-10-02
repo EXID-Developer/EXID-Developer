@@ -10,7 +10,7 @@
 
 ## ◆ exid
 
-> 빛의 땅 엘리시움에서 첫 코딩 이야기를 써 내려가는 중입니다.
+> 꿈 속에서 첫 코딩 이야기를 써 내려가는 중입니다.
 > Java와 Spring으로 서버를 세우고, React로 화면을 그리며, Spring AI로 새로운 가능성을 실험합니다.
 
 <picture><source media="(prefers-color-scheme: light)" srcset="./divider-cyber.svg"><img src="./divider.svg" width="100%" alt=""/></picture>
