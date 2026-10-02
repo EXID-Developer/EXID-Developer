@@ -16,5 +16,5 @@
 <text x="106" y="56" font-family="Georgia, 'Times New Roman', serif" font-size="32" font-weight="700" letter-spacing="8" fill="#050b22" opacity=".65">QUESTS</text>
 <text x="105" y="54" font-family="Georgia, 'Times New Roman', serif" font-size="32" font-weight="700" letter-spacing="8" fill="url(#gd)" stroke="#7a5a1c" stroke-width=".6" paint-order="stroke">QUESTS</text>
 <rect x="480" y="43" width="640" height="1.5" fill="url(#ln)"/>
-<text x="1148" y="50" text-anchor="end" font-family="Georgia, 'Times New Roman', serif" font-size="18" letter-spacing="4" fill="#F5D78E" opacity=".9">V</text>
+<text x="1148" y="50" text-anchor="end" font-family="Georgia, 'Times New Roman', serif" font-size="18" letter-spacing="4" fill="#F5D78E" opacity=".9">VI</text>
 </svg>

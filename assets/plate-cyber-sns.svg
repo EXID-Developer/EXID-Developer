@@ -8,10 +8,10 @@
 </defs>
 <g filter="url(#glow)"><polygon points="26,14 1172,14 1186,30 1186,74 46,74 26,56" fill="url(#pl)" stroke="url(#nb)" stroke-width="2.4"/></g>
 <polygon points="26,14 130,14 130,74 46,74 26,56" fill="url(#blk)"/>
-<text x="78" y="55" text-anchor="middle" font-family="Impact, 'Arial Black', 'Helvetica Neue', sans-serif" font-size="34" font-weight="900" fill="#FFFFFF">06</text>
-<text x="156" y="57" font-family="Impact, 'Arial Black', 'Helvetica Neue', sans-serif" font-size="34" letter-spacing="5" fill="#FF2BD6" opacity=".85">MISSIONS</text>
-<text x="154" y="56" font-family="Impact, 'Arial Black', 'Helvetica Neue', sans-serif" font-size="34" letter-spacing="5" fill="#00F0FF" opacity=".85">MISSIONS</text>
-<text x="155" y="56" font-family="Impact, 'Arial Black', 'Helvetica Neue', sans-serif" font-size="34" letter-spacing="5" fill="#FFFFFF">MISSIONS</text>
+<text x="78" y="55" text-anchor="middle" font-family="Impact, 'Arial Black', 'Helvetica Neue', sans-serif" font-size="34" font-weight="900" fill="#FFFFFF">02</text>
+<text x="156" y="57" font-family="Impact, 'Arial Black', 'Helvetica Neue', sans-serif" font-size="34" letter-spacing="5" fill="#FF2BD6" opacity=".85">COMMS LINK</text>
+<text x="154" y="56" font-family="Impact, 'Arial Black', 'Helvetica Neue', sans-serif" font-size="34" letter-spacing="5" fill="#00F0FF" opacity=".85">COMMS LINK</text>
+<text x="155" y="56" font-family="Impact, 'Arial Black', 'Helvetica Neue', sans-serif" font-size="34" letter-spacing="5" fill="#FFFFFF">COMMS LINK</text>
 <rect x="154" y="64" width="120" height="3" fill="url(#nb)"><animate attributeName="width" values="40;260;120;40" keyTimes="0;.4;.6;1" dur="3s" repeatCount="indefinite"/></rect>
 <g fill="#00F0FF"><rect x="1010" y="30" width="6" height="28"><animate attributeName="height" values="28;10;22;28" dur="1.9s" repeatCount="indefinite"/><animate attributeName="y" values="30;48;36;30" dur="1.9s" repeatCount="indefinite"/></rect>
 <rect x="1024" y="30" width="6" height="28" fill="#FF2BD6"><animate attributeName="height" values="12;28;8;12" dur="1.5s" repeatCount="indefinite"/><animate attributeName="y" values="46;30;50;46" dur="1.5s" repeatCount="indefinite"/></rect>
