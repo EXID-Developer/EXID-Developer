@@ -11,7 +11,7 @@ on:
         default: auto
         options: [auto, elysium, cyberpunk]
   push:
-    paths: [theme.txt, build_readme.py, build_assets.py, cyber.py]
+    paths: [theme.txt, build_readme.py, build_assets.py, cyber.py, prep_chars.py, 'assets/src/**']
 
 permissions:
   contents: write
@@ -38,7 +38,16 @@ jobs:
           if [ -n "$T" ]; then
             case "$T" in auto|elysium|cyberpunk) echo "$T" > theme.txt ;; *) echo "invalid theme"; exit 1 ;; esac
           fi
-      - run: python3 build_assets.py && python3 cyber.py && python3 build_readme.py
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Prepare character art (first run only)
+        run: |
+          pip install -q pillow
+          if [ ! -f assets/src/char-elysium.webp ] || [ ! -f assets/src/char-cyber.webp ]; then
+            pip install -q "rembg[cpu]" && python prep_chars.py
+          fi
+      - run: python build_assets.py && python cyber.py && python build_readme.py
       - name: Commit
         run: |
           git config user.name "github-actions[bot]"
