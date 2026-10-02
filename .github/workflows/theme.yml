@@ -1,0 +1,53 @@
+name: Switch Theme
+
+on:
+  issues:
+    types: [opened]
+  workflow_dispatch:
+    inputs:
+      theme:
+        description: Theme to apply
+        type: choice
+        default: auto
+        options: [auto, elysium, cyberpunk]
+  push:
+    paths: [theme.txt, build_readme.py]
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  switch:
+    # Issues only count when the repo owner opens them with a "theme:<name>" title.
+    if: >-
+      github.event_name != 'issues' ||
+      (github.event.issue.user.login == github.repository_owner &&
+       startsWith(github.event.issue.title, 'theme:'))
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Resolve theme
+        env:
+          TITLE: ${{ github.event.issue.title }}
+          INPUT: ${{ inputs.theme }}
+          EVENT: ${{ github.event_name }}
+        run: |
+          if [ "$EVENT" = "issues" ]; then T="${TITLE#theme:}"; elif [ -n "$INPUT" ]; then T="$INPUT"; else T=""; fi
+          T=$(echo "$T" | tr -d '[:space:]')
+          if [ -n "$T" ]; then
+            case "$T" in auto|elysium|cyberpunk) echo "$T" > theme.txt ;; *) echo "invalid theme"; exit 1 ;; esac
+          fi
+      - run: python3 build_readme.py
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add theme.txt README.md
+          git diff --cached --quiet || git commit -m "Render README (theme: $(cat theme.txt))"
+          git push
+      - name: Close the switch issue
+        if: github.event_name == 'issues'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh issue close ${{ github.event.issue.number }} --repo ${{ github.repository }} --comment "Theme switched to $(cat theme.txt)."
