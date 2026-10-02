@@ -19,7 +19,7 @@ jobs:
           github_user_name: ${{ github.repository_owner }}
           outputs: |
             dist/snake-elysium.svg?color_snake=#F5D78E&color_dots=#12234a,#2f5a96,#8FD3FF,#E8C170,#FFF3C4
-            dist/snake-cyber.svg?color_snake=#FCEE0A&color_dots=#161616,#4a4400,#8f8500,#d4c600,#FCEE0A
+            dist/snake-cyber.svg?color_snake=#00F0FF&color_dots=#12123a,#3b2a8f,#9D4DFF,#FF2BD6,#00F0FF
       - uses: crazy-max/ghaction-github-pages@v3.1.0
         with:
           target_branch: output
