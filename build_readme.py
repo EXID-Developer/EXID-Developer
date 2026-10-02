@@ -145,9 +145,7 @@ out = f'''<div align="center">
 
 {plate("stats")}
 
-<p align="center">
-  {themed(lambda t: trophy(t), alt="trophies")}
-</p>
+
 
 <table align="center">
 <tr>
