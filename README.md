@@ -42,10 +42,6 @@ Java와 Spring으로 서버를 세우고, React로 화면을 그리며, Spring A
 
 <img src="./assets/plate-elysium-stats.svg" width="100%" alt="✦ 전투 기록 (GitHub Stats)"/>
 
-<p align="center">
-  <img src="https://github-profile-trophy.vercel.app/?username=ryuwook42-byte&theme=gruvbox&no-frame=true&no-bg=true&row=1&column=6&margin-w=8" alt="trophies"/>
-</p>
-
 <table align="center">
 <tr>
 <td align="center">
