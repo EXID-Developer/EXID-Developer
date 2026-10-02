@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 92" width="1200" height="92">
+<defs>
+<linearGradient id="pl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a4a86"/><stop offset=".5" stop-color="#15294f"/><stop offset="1" stop-color="#0b1630"/></linearGradient>
+<linearGradient id="bd" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8f6a22"/><stop offset=".5" stop-color="#FBE3A0"/><stop offset="1" stop-color="#8f6a22"/></linearGradient>
+<linearGradient id="gd" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFBE6"/><stop offset=".5" stop-color="#F8DC93"/><stop offset="1" stop-color="#C99A3E"/></linearGradient>
+<linearGradient id="ln" x1="0" x2="1"><stop offset="0" stop-color="#F5D78E"/><stop offset="1" stop-color="#F5D78E" stop-opacity="0"/></linearGradient>
+<linearGradient id="sh" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".3"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<filter id="ds" x="-5%" y="-30%" width="110%" height="190%"><feDropShadow dx="0" dy="7" stdDeviation="6" flood-color="#000" flood-opacity=".55"/></filter>
+<clipPath id="pc"><path id="shape" d="M46 12H1154L1180 36V52L1154 76H46L20 52V36Z"/></clipPath>
+</defs>
+<g filter="url(#ds)"><path d="M46 12H1154L1180 36V52L1154 76H46L20 52V36Z" fill="url(#pl)" stroke="url(#bd)" stroke-width="2.4"/></g>
+<path d="M50 17H1150" stroke="#fff" stroke-opacity=".28"/>
+<path d="M36 40L52 24H92" fill="none" stroke="#F5D78E" stroke-opacity=".7"/>
+<g clip-path="url(#pc)"><rect y="6" width="160" height="80" fill="url(#sh)" transform="skewX(-20)"><animate attributeName="x" values="-300;1400;1400" keyTimes="0;.45;1" dur="6s" repeatCount="indefinite"/></rect></g>
+<g transform="translate(70 44)"><path d="M0 -14L12 0L0 14L-12 0Z" fill="none" stroke="#F5D78E" stroke-width="2"/><path d="M0 -7L6 0L0 7L-6 0Z" fill="#F5D78E"><animate attributeName="opacity" values=".6;1;.6" dur="3s" repeatCount="indefinite"/></path></g>
+<text x="106" y="56" font-family="Georgia, 'Times New Roman', serif" font-size="32" font-weight="700" letter-spacing="8" fill="#050b22" opacity=".65">PROFILE</text>
+<text x="105" y="54" font-family="Georgia, 'Times New Roman', serif" font-size="32" font-weight="700" letter-spacing="8" fill="url(#gd)" stroke="#7a5a1c" stroke-width=".6" paint-order="stroke">PROFILE</text>
+<rect x="480" y="43" width="640" height="1.5" fill="url(#ln)"/>
+<text x="1148" y="50" text-anchor="end" font-family="Georgia, 'Times New Roman', serif" font-size="18" letter-spacing="4" fill="#F5D78E" opacity=".9">I</text>
+</svg>

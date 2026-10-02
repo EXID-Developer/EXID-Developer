@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 92" width="1200" height="92">
+<defs>
+<pattern id="haz" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="8" height="16" fill="#FCEE0A"/></pattern>
+<pattern id="scan" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="4" height="1" fill="#000" opacity=".45"/></pattern>
+</defs>
+<polygon points="34,22 1180,22 1194,38 1194,82 54,82 34,64" fill="#5a5300"/>
+<polygon points="26,14 1172,14 1186,30 1186,74 46,74 26,56" fill="#0b0b0b" stroke="#FCEE0A" stroke-width="2.4"/>
+<polygon points="26,14 130,14 130,74 46,74 26,56" fill="#FCEE0A"/>
+<text x="78" y="55" text-anchor="middle" font-family="Impact, 'Arial Black', 'Helvetica Neue', sans-serif" font-size="34" font-weight="900" fill="#0a0a0a">04</text>
+<text x="154" y="56" font-family="Impact, 'Arial Black', 'Helvetica Neue', sans-serif" font-size="34" letter-spacing="5" fill="#FCEE0A" opacity=".95">DATA STREAM</text>
+<rect x="154" y="64" width="120" height="3" fill="#FCEE0A"><animate attributeName="width" values="40;260;120;40" keyTimes="0;.4;.6;1" dur="3s" repeatCount="indefinite"/></rect>
+<rect x="1000" y="24" width="170" height="40" fill="url(#haz)" opacity=".9"/><rect x="1000" y="24" width="170" height="40" fill="#0b0b0b" opacity=".35"/>
+<text x="990" y="50" text-anchor="end" font-family="'Courier New', Courier, monospace" font-size="14" font-weight="700" fill="#FCEE0A"> //<animate attributeName="opacity" values="1;1;.2;1" keyTimes="0;.6;.65;1" dur="2s" repeatCount="indefinite"/></text>
+<rect x="26" y="14" width="1160" height="60" fill="url(#scan)"/>
+</svg>
