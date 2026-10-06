@@ -219,6 +219,24 @@ out = f'''<div align="center">
 {cta_btn("project", U + "/damso")}
 </p>
 
+<details>
+<summary><b>Credits · 이미지 출처</b></summary>
+<br/>
+
+| 테마 | 구성 요소 | 출처 |
+|:--|:--|:--|
+| Elysium (천족) | 포토리얼 카드 (프로필 · SNS · 스택) | ChatGPT(GPT) 이미지 생성으로 만든 원본을 카드별로 잘라 사용, 빛 · 반짝임 애니메이션은 Claude가 추가 |
+| Elysium (천족) | 상단 영상 배너 | 소유자(EXID) 제공 영상 EXID_cinematic_v2.mp4를 애니메이션 WebP로 변환 (영상이 끝나면 정지 이미지로 전환) |
+| Elysium (천족) | 천사 캐릭터 | 소유자(EXID) 제공 오리지널 캐릭터 이미지 (배경 제거 후 애니메이션 합성) |
+| Cyberpunk | 포토리얼 카드 (프로필 · SNS · 스택) | ChatGPT(GPT) 이미지 생성으로 만든 원본을 카드별로 잘라 사용, 빛 · 반짝임 애니메이션은 Claude가 추가 |
+| Cyberpunk | 넷러너 캐릭터 | 소유자(EXID) 제공 오리지널 캐릭터 이미지 (배경 제거 후 애니메이션 합성) |
+| 공통 | 히어로 · 푸터 · 구분선 · SNS / 스택 / CTA 카드 · 실시간 숫자 | Claude가 Python으로 생성한 SVG (이 저장소의 코드로 자동 생성) |
+| 공통 | 외부 서비스 위젯 | [readme-typing-svg](https://github.com/DenverCoder1/readme-typing-svg) · [github-readme-stats](https://github.com/anuraghazra/github-readme-stats) · [streak-stats](https://github.com/DenverCoder1/github-readme-streak-stats) · [snk](https://github.com/Platane/snk) · [shields.io](https://shields.io) · [komarev](https://komarev.com/ghpvc/) |
+
+AI로 생성된 이미지가 포함되어 있습니다. 테마는 게임 · 애니메이션 분위기에서 영감을 받은 개인 팬 스타일이며, 공식 에셋을 사용하지 않았고 원작 제작사와 관련이 없습니다. 자세한 내용은 [CREDITS.md](./CREDITS.md)를 참고하세요.
+
+</details>
+
 <div align="center">
 
 {themed(lambda t: f"https://komarev.com/ghpvc/?username={OWNER}&label=Visitors&style=for-the-badge&{t['views']}", alt="views")}
