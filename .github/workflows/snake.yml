@@ -20,6 +20,7 @@ jobs:
           outputs: |
             dist/snake-elysium.svg?color_snake=#F5D78E&color_dots=#12234a,#2f5a96,#8FD3FF,#E8C170,#FFF3C4
             dist/snake-cyber.svg?color_snake=#00F0FF&color_dots=#12123a,#3b2a8f,#9D4DFF,#FF2BD6,#00F0FF
+            dist/snake-crest.svg?color_snake=#F5D78E&color_dots=#17140f,#4a3514,#8a6224,#C9963F,#F5D78E
       - uses: crazy-max/ghaction-github-pages@v3.1.0
         with:
           target_branch: output
