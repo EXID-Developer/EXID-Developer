@@ -12,7 +12,7 @@ if mode not in ("auto", "elysium", "cyberpunk"):
     mode = "auto"
 
 E = dict(
-    hero="./assets/hero-elysium.svg", footer="./assets/footer-elysium.svg", tag="elysium", snake=f"{RAW}/snake-elysium.svg",
+    hero="./assets/hero-elysium.webp" if (root / "assets" / "hero-elysium.webp").exists() else "./assets/hero-elysium.svg", footer="./assets/footer-elysium.svg", tag="elysium", snake=f"{RAW}/snake-elysium.svg",
     typing="https://readme-typing-svg.demolab.com?font=Cinzel&weight=600&size=22&duration=3500&pause=1200&color=F5D78E&center=true&vCenter=true&width=640&lines=Welcome+to+Elysium;First+Coding+Story;Spring+Boot+%C2%B7+React+%C2%B7+Spring+AI",
     badge=("12234A", "F5D78E", "8FD3FF"),
     card="bg_color=0B1426&border_color=E8C170&title_color=F5D78E&icon_color=8FD3FF&text_color=DCEBFF",
