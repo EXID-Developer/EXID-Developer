@@ -2,7 +2,7 @@
 """Render the Porsche hero from the owner's 24s film.
 
 Source: assets/porsche/src/EXID_Precision_24s.mp4 (owner-supplied).
-The film plays in full; on the closing "Think with your code." banner the
+The film plays in full (the corner sparkle watermark is inpainted out); on the closing "Think with your code." banner the
 tail-light bar ignites (flicker -> flare -> breathing glow, with a red floor
 reflection), a specular sweep runs across the chassis and a small glint
 sparks on the rear haunch. The closing shot is held a little longer so the
@@ -38,6 +38,41 @@ def read_frames():
     cap.release()
     if not frames:
         sys.exit(f"cannot read {SRC}")
+    return frames
+
+
+# Four-pointed sparkle watermark in the bottom-right corner of the cinematic part.
+LOGO_BOX = (1128, 568, 1192, 630)   # x0, y0, x1, y1 around the sparkle
+
+
+def remove_logo(frames):
+    """Detect the sparkle from a reference frame and inpaint it wherever it appears."""
+    x0, y0, x1, y1 = LOGO_BOX
+    pad = 24
+    X0, Y0, X1, Y1 = x0 - pad, y0 - pad, x1 + pad, y1 + pad
+
+    def bright_spots(f):
+        g = cv2.cvtColor(f[Y0:Y1, X0:X1], cv2.COLOR_BGR2GRAY)
+        bg = cv2.medianBlur(g, 31).astype(np.int16)
+        m = (g.astype(np.int16) - bg > 18).astype(np.uint8)
+        keep = np.zeros_like(m)
+        keep[pad:pad + (y1 - y0), pad:pad + (x1 - x0)] = 1
+        return m & keep
+
+    ref = bright_spots(frames[24])
+    if ref.sum() < 50:
+        return frames
+    # solid four-pointed star (astroid) centred on the sparkle, slightly enlarged
+    cx, cy, r = 1160 - X0, 600 - Y0, 29
+    yy, xx = np.mgrid[0:Y1 - Y0, 0:X1 - X0]
+    star = (np.abs(xx - cx) ** (2 / 3) + np.abs(yy - cy) ** (2 / 3)) <= r ** (2 / 3)
+    mask = cv2.dilate((star | ref.astype(bool)).astype(np.uint8), np.ones((5, 5), np.uint8))
+    for i, f in enumerate(frames):
+        cur = bright_spots(f)
+        if (cur & ref).sum() / ref.sum() < 0.2:
+            continue
+        roi = f[Y0:Y1, X0:X1]
+        f[Y0:Y1, X0:X1] = cv2.inpaint(roi, mask, 6, cv2.INPAINT_TELEA)
     return frames
 
 
@@ -141,7 +176,7 @@ def apply_fx(frame, t, light, floor, body, sweep_x, glint_xy):
 
 
 def main():
-    frames = read_frames()
+    frames = remove_logo(read_frames())
     final_banner = frames[-1][BANNER_Y0:BANNER_Y1]
     light, floor, body = masks(final_banner)
 
