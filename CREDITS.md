@@ -22,6 +22,16 @@
 | 히어로 · 푸터 · 구분선 | `assets/hero-cyber.svg` 등 | Claude가 Python으로 생성한 SVG |
 | 04~06 구분선 | `assets/photoreal-cyber/strip-*.svg` | Claude가 Python으로 생성한 SVG |
 
+## Porsche 테마
+
+| 구성 요소 | 파일 | 출처 |
+|:--|:--|:--|
+| 시네마틱 영상 원본 | `assets/porsche/src/EXID_Precision_24s.mp4` | 소유자(EXID) 제공 24초 영상. 포르쉐(Porsche) 이미지를 참고해 제작 |
+| 상단 히어로 영상 | `assets/porsche/hero-motion.webp`, `assets/porsche/hero-film.mp4` | 위 영상을 그대로 사용. 마지막 배너 구간의 후미등 점등 · 바닥 붉은 반사 · 차체 광택 스윕 · 반짝임 효과는 Claude가 `render_porsche_film.py`로 추가 |
+| 프로필 디자인 원본 | `assets/porsche/approved-design.webp` | 포르쉐(Porsche) 이미지를 참고해 소유자가 만든 디자인 |
+| 계기판 패널 재질 | `assets/porsche/panel-material.webp` | AI 이미지 생성으로 만든 빈 패널. 글자와 수치는 SVG 코드로 덧입힘 |
+| 패널 · 카드 SVG | `assets/porsche/*.svg` | Claude가 Python(`porsche.py`, `porsche_panels.py`)으로 생성 |
+
 ## 공통
 
 | 구성 요소 | 출처 |
@@ -38,8 +48,9 @@
 
 ## 안내
 
--AI로 생성된 이미지가 포함되어 있습니다 (위 표의 "ChatGPT(GPT) 이미지 생성" 항목).
--Elysium 테마: Aion 2 게임에서 영감을 받은 개인 팬 스타일입니다.
--Cyberpunk 테마: Cyberpunk 2077 게임에서 영감을 받은 개인 팬 스타일입니다.
--공식 게임 에셋을 직접 사용하지 않았으며, 각 게임의 원작 제작사(NCSOFT, CD Projekt Red)와는 관련이 없습니다.
--모든 커스텀 이미지와 SVG는 개인 프로젝트용으로 제작되었습니다.
+- AI로 생성된 이미지가 포함되어 있습니다 (위 표의 "ChatGPT(GPT) 이미지 생성" 항목).
+- Elysium 테마: Aion 2 게임에서 영감을 받은 개인 팬 스타일입니다.
+- Cyberpunk 테마: Cyberpunk 2077 게임에서 영감을 받은 개인 팬 스타일입니다.
+- Porsche 테마: 포르쉐(Porsche) 이미지를 참고해 만든 개인 팬 스타일입니다.
+- 공식 게임 에셋을 직접 사용하지 않았으며, 각 원작사(NCSOFT, CD Projekt Red, Porsche AG)와는 관련이 없습니다.
+- 모든 커스텀 이미지와 SVG는 개인 프로젝트용으로 제작되었습니다.
