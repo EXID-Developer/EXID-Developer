@@ -6,8 +6,8 @@ Inputs (owner-supplied EXID GitHub Promo Pack):
   assets/porsche/src/EXID_Crest_Transparent.png  transparent crest
   assets/porsche/src/EXID_GitHub_Banner.png      wide banner
 Outputs:
-  assets/porsche/hero-motion.webp  800x450 animated WebP, plays ONCE and stops on the banner
-  assets/porsche/hero-still.webp   final banner frame (prefers-reduced-motion)
+  assets/crest/hero-motion.webp    800x450 animated WebP, plays ONCE and stops on the banner
+  assets/crest/hero-still.webp     final banner frame (prefers-reduced-motion)
 Sequence after the film: the crest fades/scales in at the centre, a light sweep
 crosses it, then it glides to the crest position of the banner while the banner
 fades in underneath; the last frame (the banner) stays on screen.
@@ -19,7 +19,7 @@ from PIL import Image, ImageFilter, ImageEnhance, ImageChops
 
 ROOT = pathlib.Path(__file__).parent
 SRC = ROOT / "assets/porsche/src"
-OUT = ROOT / "assets/porsche"
+OUT = ROOT / "assets/crest"
 W, H, FPS = 800, 450, 12
 
 # crest position inside the banner image (2170x725 source pixels)

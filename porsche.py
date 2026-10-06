@@ -39,7 +39,7 @@ def image(key,width='100%'):
  return f'<img src="./assets/porsche/{key}.svg" width="{width}" alt="{escape(LABELS[key])}"/>'
 def switches():
  out=[]
- for label,key,col in [('AUTO','auto','8FD3FF'),('ELYSIUM','elysium','F5D78E'),('CYBERPUNK','cyberpunk','FF2BD6'),('PORSCHE','porsche','D73636')]:
+ for label,key,col in [('AUTO','auto','8FD3FF'),('ELYSIUM','elysium','F5D78E'),('CYBERPUNK','cyberpunk','FF2BD6'),('PORSCHE','porsche','D73636'),('CREST','crest','D9A646')]:
   url=f'{U}/{OWNER}/issues/new?title=theme%3A{key}&body=Submit+to+switch+the+profile+theme.'
   out.append(f'<a href="{url}"><img src="https://img.shields.io/badge/{label}-'+('active' if key=='porsche' else 'switch')+f'-{col}?style=flat-square&amp;labelColor=17191D" alt="{label}"/></a>')
  return ' '.join(out)
@@ -53,7 +53,7 @@ def render():
 
 <a name="profile"></a>
 
-<a href="./assets/porsche/hero-film.mp4"><picture><source media="(prefers-reduced-motion: reduce)" srcset="./assets/porsche/hero-still.webp"/><img src="./assets/porsche/hero-motion.webp" width="100%" alt="EXID — Software Developer. Gold crest intro film that settles on the EXID banner: Explore my work on GitHub. Click to open MP4."/></picture></a>
+<a href="./assets/porsche/hero-film.mp4"><picture><source media="(prefers-reduced-motion: reduce)" srcset="./assets/porsche/hero.svg"/><img src="./assets/porsche/hero-motion.webp" width="100%" alt="EXID — Precision in every line. 24s cinematic film ending on Think with your code. Click to open MP4."/></picture></a>
 
 <p align="right"><a href="./assets/porsche/hero-film.mp4">▶ WATCH FILM · MP4</a></p>
 

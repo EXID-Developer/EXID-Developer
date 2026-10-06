@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Render README.md for the theme stored in theme.txt (auto | elysium | cyberpunk | porsche)."""
+"""Render README.md for the theme stored in theme.txt (auto | elysium | cyberpunk | porsche | crest)."""
 import pathlib
 
 OWNER = "EXID-Developer"
@@ -10,11 +10,15 @@ tf = root / "theme.txt"
 PRE = (root / "assets" / "photoreal" / "approved-design.png").exists()  # photoreal Elysium art present?
 PRC = (root / "assets" / "photoreal-cyber" / "approved-design.png").exists()  # photoreal Cyberpunk art present?
 mode = tf.read_text().strip() if tf.exists() else "auto"
-if mode not in ("auto", "elysium", "cyberpunk", "porsche"):
+if mode not in ("auto", "elysium", "cyberpunk", "porsche", "crest"):
     mode = "auto"
 
 if mode == "porsche":
     from porsche import render
+    render()
+    raise SystemExit(0)
+if mode == "crest":
+    from crest import render
     render()
     raise SystemExit(0)
 
@@ -110,7 +114,7 @@ def switch_buttons():
         href = f"{REPO}/issues/new?title=theme%3A{key}&body=Submit+this+issue+to+switch+the+profile+theme+%28owner+only%29."
         img = f"https://img.shields.io/badge/{label}-{msg}-{col}?style=flat-square&labelColor=1a1a1a"
         return f'<a href="{href}"><img src="{img}" alt="{label}"/></a>'
-    return "\n  ".join([btn("AUTO", "auto", "8FD3FF"), btn("ELYSIUM", "elysium", "F5D78E"), btn("CYBERPUNK", "cyberpunk", "FF2BD6"), btn("PORSCHE", "porsche", "D73636")])
+    return "\n  ".join([btn("AUTO", "auto", "8FD3FF"), btn("ELYSIUM", "elysium", "F5D78E"), btn("CYBERPUNK", "cyberpunk", "FF2BD6"), btn("PORSCHE", "porsche", "D73636"), btn("CREST", "crest", "D9A646")])
 
 
 stats_card = lambda t, n: f"https://github-readme-stats.vercel.app/api/{n}&{t['card']}&border_radius=10"
