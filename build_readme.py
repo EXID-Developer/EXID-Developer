@@ -107,8 +107,15 @@ def sns_badge(name, logo, href, ci):
     return f'<a href="{href}">{themed(url, alt=name)}</a>'
 
 
-SNS = "\n  ".join([sns_badge("GitHub", "github", U, 1), sns_badge("Repositories", "gitbook", U + "?tab=repositories", 2),
-                   sns_badge("Stars", "starship", U + "?tab=stars", 1)])
+def sns_tile(key, href):
+    return f'<a href="{href}">' + themed(lambda t: "./assets/sns-%s-%s.svg" % (t["tag"], key), width="32%", alt=key) + "</a>"
+
+
+def cta_btn(key, href):
+    return f'<a href="{href}">' + themed(lambda t: "./assets/cta-%s-%s.svg" % (t["tag"], key), width="48%", alt=key) + "</a>"
+
+
+SNS = "\n  ".join([sns_tile("github", U), sns_tile("repos", U + "?tab=repositories"), sns_tile("stars", U + "?tab=stars")])
 
 out = f'''<div align="center">
 
@@ -120,7 +127,7 @@ out = f'''<div align="center">
 
 {plate("intro")}
 
-<h3 align="center">"Think with your code!"</h3>
+{themed(lambda t: "./assets/profile-%s.svg" % t["tag"], width="100%", alt="profile")}
 
 <p align="center">
 {text("quote")[0]}<br/>
@@ -139,7 +146,7 @@ out = f'''<div align="center">
 <summary><b>Tech Stack (click to fold)</b></summary>
 <br/>
 <p align="center">
-{chr(10).join(badge(*s) for s in STACK)}
+{themed(lambda t: "./assets/stack-%s.svg" % t["tag"], width="100%", alt="tech stack")}
 </p>
 </details>
 
@@ -176,8 +183,8 @@ out = f'''<div align="center">
 </p>
 
 <p align="center">
-공부 기록이 궁금하다면 &gt;&gt; {click(U + "/SpringAiBasic")}<br/>
-진행 중인 프로젝트가 궁금하다면 &gt;&gt; {click(U + "/damso")}
+{cta_btn("study", U + "/SpringAiBasic")}
+{cta_btn("project", U + "/damso")}
 </p>
 
 <div align="center">
