@@ -8,7 +8,7 @@
 
 <img src="./assets/plate-elysium-intro.svg" width="100%" alt="✦ 날개를 펼친 개발자, exid"/>
 
-<h3 align="center">"Think with your code!"</h3>
+<img src="./assets/profile-elysium.svg" width="100%" alt="profile"/>
 
 <p align="center">
 빛의 땅 엘리시움에서 첫 코딩 이야기를 써 내려가는 중입니다.<br/>
@@ -18,9 +18,9 @@ Java와 Spring으로 서버를 세우고, React로 화면을 그리며, Spring A
 <img src="./assets/plate-elysium-sns.svg" width="100%" alt="✦ 연락처 (SNS List)"/>
 
 <p align="center">
-  <a href="https://github.com/EXID-Developer"><img src="https://img.shields.io/badge/GitHub-12234A?style=for-the-badge&logo=github&logoColor=F5D78E" alt="GitHub"/></a>
-  <a href="https://github.com/EXID-Developer?tab=repositories"><img src="https://img.shields.io/badge/Repositories-12234A?style=for-the-badge&logo=gitbook&logoColor=8FD3FF" alt="Repositories"/></a>
-  <a href="https://github.com/EXID-Developer?tab=stars"><img src="https://img.shields.io/badge/Stars-12234A?style=for-the-badge&logo=starship&logoColor=F5D78E" alt="Stars"/></a>
+  <a href="https://github.com/EXID-Developer"><img src="./assets/sns-elysium-github.svg" width="32%" alt="github"/></a>
+  <a href="https://github.com/EXID-Developer?tab=repositories"><img src="./assets/sns-elysium-repos.svg" width="32%" alt="repos"/></a>
+  <a href="https://github.com/EXID-Developer?tab=stars"><img src="./assets/sns-elysium-stars.svg" width="32%" alt="stars"/></a>
 </p>
 
 <img src="./assets/plate-elysium-stack.svg" width="100%" alt="✦ 장비 (Tech Stack)"/>
@@ -29,14 +29,7 @@ Java와 Spring으로 서버를 세우고, React로 화면을 그리며, Spring A
 <summary><b>Tech Stack (click to fold)</b></summary>
 <br/>
 <p align="center">
-  <img src="https://img.shields.io/badge/Java-12234A?style=for-the-badge&logo=openjdk&logoColor=F5D78E" alt="Java"/>
-  <img src="https://img.shields.io/badge/Spring_Boot-12234A?style=for-the-badge&logo=springboot&logoColor=F5D78E" alt="Spring Boot"/>
-  <img src="https://img.shields.io/badge/MyBatis-12234A?style=for-the-badge" alt="MyBatis"/>
-  <img src="https://img.shields.io/badge/Spring_AI-12234A?style=for-the-badge&logo=spring&logoColor=F5D78E" alt="Spring AI"/>
-  <img src="https://img.shields.io/badge/TypeScript-12234A?style=for-the-badge&logo=typescript&logoColor=8FD3FF" alt="TypeScript"/>
-  <img src="https://img.shields.io/badge/React-12234A?style=for-the-badge&logo=react&logoColor=8FD3FF" alt="React"/>
-  <img src="https://img.shields.io/badge/Vite-12234A?style=for-the-badge&logo=vite&logoColor=8FD3FF" alt="Vite"/>
-  <img src="https://img.shields.io/badge/Git-12234A?style=for-the-badge&logo=git&logoColor=F5D78E" alt="Git"/>
+<img src="./assets/stack-elysium.svg" width="100%" alt="tech stack"/>
 </p>
 </details>
 
@@ -71,8 +64,8 @@ Java와 Spring으로 서버를 세우고, React로 화면을 그리며, Spring A
 </p>
 
 <p align="center">
-공부 기록이 궁금하다면 &gt;&gt; <a href="https://github.com/EXID-Developer/SpringAiBasic"><img src="https://img.shields.io/badge/Click!_Me!-F5D78E?style=for-the-badge" alt="Click Me"/></a><br/>
-진행 중인 프로젝트가 궁금하다면 &gt;&gt; <a href="https://github.com/EXID-Developer/damso"><img src="https://img.shields.io/badge/Click!_Me!-F5D78E?style=for-the-badge" alt="Click Me"/></a>
+<a href="https://github.com/EXID-Developer/SpringAiBasic"><img src="./assets/cta-elysium-study.svg" width="48%" alt="study"/></a>
+<a href="https://github.com/EXID-Developer/damso"><img src="./assets/cta-elysium-project.svg" width="48%" alt="project"/></a>
 </p>
 
 <div align="center">
