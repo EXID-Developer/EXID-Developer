@@ -11,7 +11,7 @@ on:
         default: auto
         options: [auto, elysium, cyberpunk, porsche]
   push:
-    paths: [porsche.py, 'assets/porsche/approved-design.webp', theme.txt, build_readme.py, build_assets.py, cyber.py, prep_chars.py, 'assets/src/**', 'assets/*.webp', cards.py, photoreal.py, livestat.py, 'assets/photoreal/approved-design.png', 'assets/photoreal-cyber/approved-design.png']
+    paths: [porsche.py, porsche_panels.py, 'assets/porsche/approved-design.webp', theme.txt, build_readme.py, build_assets.py, cyber.py, prep_chars.py, 'assets/src/**', 'assets/*.webp', cards.py, photoreal.py, livestat.py, 'assets/photoreal/approved-design.png', 'assets/photoreal-cyber/approved-design.png']
   schedule:
     - cron: '17 3 * * *'
 

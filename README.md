@@ -3,7 +3,9 @@
 
 <a name="profile"></a>
 
-<img src="./assets/porsche/hero.svg" width="100%" alt="Think with your code. EXID-Developer. Java, Spring Boot, React, Spring AI."/>
+<a href="./assets/porsche/hero-film.mp4"><picture><source media="(prefers-reduced-motion: reduce)" srcset="./assets/porsche/hero.svg"/><img src="./assets/porsche/hero-motion.webp" width="100%" alt="Think with your code — cinematic Porsche-inspired profile. Click to open MP4."/></picture></a>
+
+<p align="right"><a href="./assets/porsche/hero-film.mp4">▶ WATCH FILM · MP4</a></p>
 
 <a name="stack"></a>
 
@@ -35,8 +37,8 @@ Java와 Spring으로 서버를 세우고, React로 화면을 그리며, Spring A
 ### Activity
 
 <p align="center">
-<img src="https://streak-stats.demolab.com?user=EXID-Developer&amp;background=111315&amp;border=44484C&amp;ring=D73636&amp;fire=D73636&amp;currStreakLabel=F2F2F2&amp;sideLabels=BFC3C7&amp;currStreakNum=FFFFFF&amp;sideNums=FFFFFF&amp;dates=999999" width="54%" alt="GitHub contribution streak"/>
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=EXID-Developer&amp;layout=compact&amp;bg_color=111315&amp;border_color=44484C&amp;title_color=F2F2F2&amp;icon_color=D73636&amp;text_color=BFC3C7" width="43%" alt="Top languages"/>
+<a href="https://streak-stats.demolab.com?user=EXID-Developer"><img src="./assets/porsche/activity.svg" width="49%" alt="Contribution snapshot from supplied screenshot, 2026-10-06: total 114, current streak 1, longest streak 5. Click for live stats."/></a>
+<img src="./assets/porsche/languages.svg" width="49%" alt="Most used languages: Java 53.76%, TypeScript 30.41%, Python 13.09%, HTML 2.30%, CSS 0.36%, JavaScript 0.09%. Snapshot 2026-10-06."/>
 </p>
 
 <details>
@@ -48,8 +50,8 @@ Java와 Spring으로 서버를 세우고, React로 화면을 그리며, Spring A
 
 ### Featured projects
 
-<p align="center"><a href="https://github.com/EXID-Developer/damso"><img src="https://github-readme-stats.vercel.app/api/pin/?username=EXID-Developer&amp;repo=damso&amp;bg_color=111315&amp;border_color=44484C&amp;title_color=F2F2F2&amp;icon_color=D73636&amp;text_color=BFC3C7" width="48%" alt="damso"/></a> <a href="https://github.com/EXID-Developer/SpringAiBasic"><img src="https://github-readme-stats.vercel.app/api/pin/?username=EXID-Developer&amp;repo=SpringAiBasic&amp;bg_color=111315&amp;border_color=44484C&amp;title_color=F2F2F2&amp;icon_color=D73636&amp;text_color=BFC3C7" width="48%" alt="SpringAiBasic"/></a></p>
-<p align="center"><a href="https://github.com/EXID-Developer/sivertown"><img src="https://github-readme-stats.vercel.app/api/pin/?username=EXID-Developer&amp;repo=sivertown&amp;bg_color=111315&amp;border_color=44484C&amp;title_color=F2F2F2&amp;icon_color=D73636&amp;text_color=BFC3C7" width="48%" alt="sivertown"/></a> <a href="https://github.com/EXID-Developer/SpringBootMyBatis"><img src="https://github-readme-stats.vercel.app/api/pin/?username=EXID-Developer&amp;repo=SpringBootMyBatis&amp;bg_color=111315&amp;border_color=44484C&amp;title_color=F2F2F2&amp;icon_color=D73636&amp;text_color=BFC3C7" width="48%" alt="SpringBootMyBatis"/></a></p>
+<p align="center"><a href="https://github.com/EXID-Developer/damso"><img src="./assets/porsche/project-damso.svg" width="49%" alt="damso — open repository"/></a> <a href="https://github.com/EXID-Developer/SpringAiBasic"><img src="./assets/porsche/project-SpringAiBasic.svg" width="49%" alt="SpringAiBasic — open repository"/></a></p>
+<p align="center"><a href="https://github.com/EXID-Developer/sivertown"><img src="./assets/porsche/project-sivertown.svg" width="49%" alt="sivertown — open repository"/></a> <a href="https://github.com/EXID-Developer/SpringBootMyBatis"><img src="./assets/porsche/project-SpringBootMyBatis.svg" width="49%" alt="SpringBootMyBatis — open repository"/></a></p>
 
 [공부 기록](https://github.com/EXID-Developer/SpringAiBasic) · [진행 중인 프로젝트](https://github.com/EXID-Developer/damso)
 
