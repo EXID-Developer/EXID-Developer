@@ -7,7 +7,8 @@ REPO = f"https://github.com/{OWNER}/{OWNER}"
 RAW = f"https://raw.githubusercontent.com/{OWNER}/{OWNER}/output"
 root = pathlib.Path(__file__).parent
 tf = root / "theme.txt"
-PR = (root / "assets" / "photoreal" / "approved-design.png").exists()  # photoreal Elysium art present?
+PRE = (root / "assets" / "photoreal" / "approved-design.png").exists()  # photoreal Elysium art present?
+PRC = (root / "assets" / "photoreal-cyber" / "approved-design.png").exists()  # photoreal Cyberpunk art present?
 mode = tf.read_text().strip() if tf.exists() else "auto"
 if mode not in ("auto", "elysium", "cyberpunk"):
     mode = "auto"
@@ -65,12 +66,21 @@ def text(key):
 divider = lambda: ""
 
 
+def pr(t):
+    return PRE if t is E else PRC
+
+
+def pdir(t):
+    return "./assets/photoreal" if t is E else "./assets/photoreal-cyber"
+
+
 def plate(key):
     alt = {"elysium": E, "cyberpunk": C}.get(mode, {"h": NEUTRAL})["h"][key]
     def url(t):
-        if PR and t is E:
-            return ("./assets/photoreal/blank.svg" if key == "intro" else
-                    "./assets/photoreal/section-%s.svg" % key if key in ("sns", "stack") else "./assets/photoreal/strip-%s.svg" % key)
+        if pr(t):
+            d = pdir(t)
+            return (d + "/blank.svg" if key == "intro" else
+                    d + "/section-%s.svg" % key if key in ("sns", "stack") else d + "/strip-%s.svg" % key)
         return f"./assets/plate-{t['tag']}-{key}.svg"
     return themed(url, width="100%", alt=alt)
 
@@ -117,7 +127,7 @@ PRKEY = dict(github="github", repos="repositories", stars="stars")
 
 
 def sns_tile(key, href):
-    return f'<a href="{href}">' + themed(lambda t: "./assets/photoreal/%s.svg" % PRKEY[key] if (PR and t is E) else "./assets/sns-%s-%s.svg" % (t["tag"], key), width="32%", alt=key) + "</a>"
+    return f'<a href="{href}">' + themed(lambda t: "%s/%s.svg" % (pdir(t), PRKEY[key]) if pr(t) else "./assets/sns-%s-%s.svg" % (t["tag"], key), width="32%", alt=key) + "</a>"
 
 
 def cta_btn(key, href):
@@ -125,10 +135,10 @@ def cta_btn(key, href):
 
 
 def stack_tiles():
-    if not PR:
+    if not (PRE or PRC):
         return themed(lambda t: "./assets/stack-%s.svg" % t["tag"], width="100%", alt="tech stack")
     names = ["backend", "frontend", "ai-tools"]
-    return "\n".join(themed(lambda t, i=i: "./assets/photoreal/%s.svg" % names[i] if t is E else "./assets/stack-cyber-%d.svg" % i,
+    return "\n".join(themed(lambda t, i=i: "%s/%s.svg" % (pdir(t), names[i]) if pr(t) else "./assets/stack-%s-%d.svg" % (t["tag"], i),
                             width="32%", alt=names[i]) for i in range(3))
 
 
@@ -145,7 +155,7 @@ out = f'''<div align="center">
 
 {plate("intro")}
 
-{themed(lambda t: "./assets/photoreal/profile.svg" if (PR and t is E) else "./assets/profile-%s.svg" % t["tag"], width="100%", alt="profile")}
+{themed(lambda t: pdir(t) + "/profile.svg" if pr(t) else "./assets/profile-%s.svg" % t["tag"], width="100%", alt="profile")}
 
 <p align="center">
 {text("quote")[0]}<br/>
@@ -169,6 +179,10 @@ out = f'''<div align="center">
 </details>
 
 {plate("stats")}
+
+<p align="center">
+{themed(lambda t: "./assets/livestat-%s.svg" % t["tag"], width="100%", alt="live GitHub stats")}
+</p>
 
 
 
