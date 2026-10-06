@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="./assets/hero-elysium.svg" width="100%" alt="EXID"/>
+<img src="./assets/hero-elysium.webp" width="100%" alt="EXID"/>
 
 <a href="https://github.com/EXID-Developer/EXID-Developer"><img src="https://readme-typing-svg.demolab.com?font=Cinzel&weight=600&size=22&duration=3500&pause=1200&color=F5D78E&center=true&vCenter=true&width=640&lines=Welcome+to+Elysium;First+Coding+Story;Spring+Boot+%C2%B7+React+%C2%B7+Spring+AI" alt="typing"/></a>
 
