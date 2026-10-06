@@ -11,7 +11,7 @@ on:
         default: auto
         options: [auto, elysium, cyberpunk]
   push:
-    paths: [theme.txt, build_readme.py, build_assets.py, cyber.py, prep_chars.py, 'assets/src/**', 'assets/*.webp', cards.py]
+    paths: [theme.txt, build_readme.py, build_assets.py, cyber.py, prep_chars.py, 'assets/src/**', 'assets/*.webp', cards.py, photoreal.py, 'assets/photoreal/approved-design.png']
 
 permissions:
   contents: write
@@ -47,7 +47,7 @@ jobs:
           if [ ! -f assets/src/char-elysium.webp ] || [ ! -f assets/src/char-cyber.webp ]; then
             pip install -q "rembg[cpu]" && python prep_chars.py
           fi
-      - run: python build_assets.py && python cyber.py && python cards.py && python build_readme.py
+      - run: python build_assets.py && python cyber.py && python cards.py && python photoreal.py && python build_readme.py
       - name: Commit
         run: |
           git config user.name "github-actions[bot]"
