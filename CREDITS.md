@@ -26,8 +26,8 @@
 
 | 구성 요소 | 파일 | 출처 |
 |:--|:--|:--|
-| 상단 히어로 영상 원본 | `assets/porsche/src/EXID_GitHub_15s.mp4` | 소유자(EXID) 제공 15초 홍보 영상 (EXID GitHub Promo Pack). 골드 · 블랙 · 와인레드 방패 엠블럼, 전자음 사운드트랙 포함 |
-| 상단 히어로 영상 | `assets/porsche/hero-motion.webp`, `assets/porsche/hero-film.mp4`, `assets/porsche/hero-still.webp` | 위 영상을 편집 없이 변환 (README용 애니메이션 WebP · 클릭 시 원본 MP4 · 움직임 줄이기 설정용 정지 이미지) |
+| 상단 히어로 원본 | `assets/porsche/src/EXID_GitHub_15s.mp4`, `EXID_GitHub_Banner.png`, `EXID_Crest_Transparent.png` | 소유자(EXID) 제공 EXID GitHub Promo Pack: 15초 홍보 영상(전자음 사운드트랙 포함) · 가로 배너 · 투명 엠블럼. 골드 · 블랙 · 와인레드 방패 엠블럼 |
+| 상단 히어로 애니메이션 | `assets/porsche/hero-motion.webp`, `assets/porsche/hero-still.webp`, `assets/porsche/hero-film.mp4` | 영상을 한 번 재생한 뒤 투명 엠블럼이 등장해 배너의 엠블럼 자리로 이동하고 배너에서 멈추도록 Claude가 `render_hero.py`로 구성. 영상 · 배너 · 엠블럼 자체는 편집하지 않음 |
 | 이전 히어로 영상 (현재 미사용) | `assets/porsche/src/EXID_Precision_24s.mp4` | 소유자 제공 24초 영상. 포르쉐(Porsche) 이미지를 참고해 제작. `render_porsche_film.py`로 후미등 · 광택 효과를 추가했던 버전 |
 | 프로필 디자인 원본 | `assets/porsche/approved-design.webp` | 포르쉐(Porsche) 이미지를 참고해 소유자가 만든 디자인 |
 | 계기판 패널 재질 | `assets/porsche/panel-material.webp` | AI 이미지 생성으로 만든 빈 패널. 글자와 수치는 SVG 코드로 덧입힘 |

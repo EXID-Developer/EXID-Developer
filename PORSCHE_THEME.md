@@ -18,9 +18,9 @@ Validation: README generation for all four modes; local image paths, SNS and pro
 
 All custom Porsche panels have a slow reflected-light sweep and a red edge accent. CSS disables sweeps for `prefers-reduced-motion`.
 
-The hero is the owner-supplied 15-second promo film (`assets/porsche/src/EXID_GitHub_15s.mp4`, gold crest intro ending on "EXID — Software Developer"), shown unedited as an animated WebP (800×450, 12 fps, every frame a keyframe, infinite loop). Reduced-motion viewers get a still frame (`hero-still.webp`), and the 1080p MP4 with its soundtrack is linked.
+The hero comes from the owner-supplied EXID GitHub Promo Pack. The 15-second promo film (`assets/porsche/src/EXID_GitHub_15s.mp4`) plays once as an animated WebP (800×450, 12 fps, every frame a keyframe). Afterwards the transparent crest fades in at the centre, a light sweep crosses it, and it glides into the crest position of the wide banner while the banner fades in; the animation stops on the banner. Reduced-motion viewers get the banner frame (`hero-still.webp`), and the original 1080p MP4 with its soundtrack is linked. The WebP plays once per page load, so refreshing replays it.
 
-`bash render_porsche_motion.sh` (ffmpeg) rebuilds all three hero files. Regular workflow runs reuse the committed media. `render_porsche_film.py` is the previous 24-second Porsche film pipeline (tail-light and chassis-shine effects) and is no longer used for the hero.
+`bash render_porsche_motion.sh` (ffmpeg, Python 3 with Pillow and numpy; it runs `render_hero.py`) rebuilds all three hero files. Regular workflow runs reuse the committed media. `render_porsche_film.py` is the previous 24-second Porsche film pipeline (tail-light and chassis-shine effects) and is no longer used for the hero.
 
 The activity numbers come from the supplied screenshot; language percentages were verified against the public GitHub Readme Stats response. Both are labeled snapshots and do not claim to refresh live. Repository names, languages and descriptions were checked against GitHub REST. Update the snapshot values and date together when refreshing.
 
