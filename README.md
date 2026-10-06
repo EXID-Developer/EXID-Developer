@@ -6,34 +6,36 @@
 
 </div>
 
-<img src="./assets/plate-elysium-intro.svg" width="100%" alt="✦ 날개를 펼친 개발자, exid"/>
+<img src="./assets/photoreal/blank.svg" width="100%" alt="✦ 날개를 펼친 개발자, exid"/>
 
-<img src="./assets/profile-elysium.svg" width="100%" alt="profile"/>
+<img src="./assets/photoreal/profile.svg" width="100%" alt="profile"/>
 
 <p align="center">
 빛의 땅 엘리시움에서 첫 코딩 이야기를 써 내려가는 중입니다.<br/>
 Java와 Spring으로 서버를 세우고, React로 화면을 그리며, Spring AI로 새로운 가능성을 실험합니다.
 </p>
 
-<img src="./assets/plate-elysium-sns.svg" width="100%" alt="✦ 연락처 (SNS List)"/>
+<img src="./assets/photoreal/section-sns.svg" width="100%" alt="✦ 연락처 (SNS List)"/>
 
 <p align="center">
-  <a href="https://github.com/EXID-Developer"><img src="./assets/sns-elysium-github.svg" width="32%" alt="github"/></a>
-  <a href="https://github.com/EXID-Developer?tab=repositories"><img src="./assets/sns-elysium-repos.svg" width="32%" alt="repos"/></a>
-  <a href="https://github.com/EXID-Developer?tab=stars"><img src="./assets/sns-elysium-stars.svg" width="32%" alt="stars"/></a>
+  <a href="https://github.com/EXID-Developer"><img src="./assets/photoreal/github.svg" width="32%" alt="github"/></a>
+  <a href="https://github.com/EXID-Developer?tab=repositories"><img src="./assets/photoreal/repositories.svg" width="32%" alt="repos"/></a>
+  <a href="https://github.com/EXID-Developer?tab=stars"><img src="./assets/photoreal/stars.svg" width="32%" alt="stars"/></a>
 </p>
 
-<img src="./assets/plate-elysium-stack.svg" width="100%" alt="✦ 장비 (Tech Stack)"/>
+<img src="./assets/photoreal/section-stack.svg" width="100%" alt="✦ 장비 (Tech Stack)"/>
 
 <details open>
 <summary><b>Tech Stack (click to fold)</b></summary>
 <br/>
 <p align="center">
-<img src="./assets/stack-elysium.svg" width="100%" alt="tech stack"/>
+<img src="./assets/photoreal/backend.svg" width="32%" alt="backend"/>
+<img src="./assets/photoreal/frontend.svg" width="32%" alt="frontend"/>
+<img src="./assets/photoreal/ai-tools.svg" width="32%" alt="ai-tools"/>
 </p>
 </details>
 
-<img src="./assets/plate-elysium-stats.svg" width="100%" alt="✦ 전투 기록 (GitHub Stats)"/>
+<img src="./assets/photoreal/strip-stats.svg" width="100%" alt="✦ 전투 기록 (GitHub Stats)"/>
 
 <table align="center">
 <tr>
@@ -46,13 +48,13 @@ Java와 Spring으로 서버를 세우고, React로 화면을 그리며, Spring A
 </tr>
 </table>
 
-<img src="./assets/plate-elysium-snake.svg" width="100%" alt="✦ 비행 궤적 (Contribution Snake)"/>
+<img src="./assets/photoreal/strip-snake.svg" width="100%" alt="✦ 비행 궤적 (Contribution Snake)"/>
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/EXID-Developer/EXID-Developer/output/snake-elysium.svg" alt="contribution snake"/>
 </p>
 
-<img src="./assets/plate-elysium-quest.svg" width="100%" alt="✦ 대표 퀘스트 (Featured Projects)"/>
+<img src="./assets/photoreal/strip-quest.svg" width="100%" alt="✦ 대표 퀘스트 (Featured Projects)"/>
 
 <p align="center">
   <a href="https://github.com/EXID-Developer/damso"><img src="https://github-readme-stats.vercel.app/api/pin/?username=EXID-Developer&repo=damso&bg_color=0B1426&border_color=E8C170&title_color=F5D78E&icon_color=8FD3FF&text_color=DCEBFF" alt="damso"/></a>
