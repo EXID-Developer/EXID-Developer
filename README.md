@@ -37,6 +37,10 @@ Java와 Spring으로 서버를 세우고, React로 화면을 그리며, Spring A
 
 <img src="./assets/photoreal/strip-stats.svg" width="100%" alt="✦ 전투 기록 (GitHub Stats)"/>
 
+<p align="center">
+<img src="./assets/livestat-elysium.svg" width="100%" alt="live GitHub stats"/>
+</p>
+
 <table align="center">
 <tr>
 <td align="center">
