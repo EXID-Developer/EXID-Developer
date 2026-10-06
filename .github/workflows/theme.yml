@@ -11,7 +11,7 @@ on:
         default: auto
         options: [auto, elysium, cyberpunk]
   push:
-    paths: [theme.txt, build_readme.py, build_assets.py, cyber.py, prep_chars.py, 'assets/src/**']
+    paths: [theme.txt, build_readme.py, build_assets.py, cyber.py, prep_chars.py, 'assets/src/**', 'assets/*.webp']
 
 permissions:
   contents: write
