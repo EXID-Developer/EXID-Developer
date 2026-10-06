@@ -53,7 +53,7 @@ def render():
 
 <a name="profile"></a>
 
-<a href="./assets/porsche/hero-film.mp4"><picture><source media="(prefers-reduced-motion: reduce)" srcset="./assets/porsche/hero.svg"/><img src="./assets/porsche/hero-motion.webp" width="100%" alt="EXID — Precision in every line. 24s cinematic film ending on Think with your code. Click to open MP4."/></picture></a>
+<a href="./assets/porsche/hero-film.mp4"><picture><source media="(prefers-reduced-motion: reduce)" srcset="./assets/porsche/hero-still.webp"/><img src="./assets/porsche/hero-motion.webp" width="100%" alt="EXID — Software Developer. Gold crest intro film: Explore my work on GitHub. Code. Build. Ship. Click to open MP4."/></picture></a>
 
 <p align="right"><a href="./assets/porsche/hero-film.mp4">▶ WATCH FILM · MP4</a></p>
 

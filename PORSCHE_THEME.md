@@ -18,9 +18,9 @@ Validation: README generation for all four modes; local image paths, SNS and pro
 
 All custom Porsche panels have a slow reflected-light sweep and a red edge accent. CSS disables sweeps for `prefers-reduced-motion`.
 
-The hero is the owner-supplied 24-second film (`assets/porsche/src/EXID_Precision_24s.mp4`), played in full as an animated WebP (800×450, 12 fps, infinite loop) with the static SVG as the reduced-motion source and the full-resolution H.264 MP4 linked. On the closing "Think with your code." banner the tail-light bar starts dark, flickers on with a flare and red floor reflection, then breathes; a specular sweep runs across the chassis and a glint sparks on the rear haunch. The closing shot is held 3.5 s longer so the effects finish before the loop.
+The hero is the owner-supplied 15-second promo film (`assets/porsche/src/EXID_GitHub_15s.mp4`, gold crest intro ending on "EXID — Software Developer"), shown unedited as an animated WebP (800×450, 12 fps, infinite loop). Reduced-motion viewers get a still frame (`hero-still.webp`), and the 1080p MP4 with its soundtrack is linked.
 
-`python render_porsche_film.py` (ffmpeg, numpy, opencv-python, Pillow) rebuilds both motion files. Regular workflow runs reuse the committed media.
+`bash render_porsche_motion.sh` (ffmpeg) rebuilds all three hero files. Regular workflow runs reuse the committed media. `render_porsche_film.py` is the previous 24-second Porsche film pipeline (tail-light and chassis-shine effects) and is no longer used for the hero.
 
 The activity numbers come from the supplied screenshot; language percentages were verified against the public GitHub Readme Stats response. Both are labeled snapshots and do not claim to refresh live. Repository names, languages and descriptions were checked against GitHub REST. Update the snapshot values and date together when refreshing.
 
