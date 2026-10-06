@@ -18,7 +18,7 @@ Validation: README generation for all four modes; local image paths, SNS and pro
 
 All custom Porsche panels have a slow reflected-light sweep and a red edge accent. CSS disables sweeps for `prefers-reduced-motion`.
 
-The hero is the owner-supplied 15-second promo film (`assets/porsche/src/EXID_GitHub_15s.mp4`, gold crest intro ending on "EXID — Software Developer"), shown unedited as an animated WebP (800×450, 12 fps, infinite loop). Reduced-motion viewers get a still frame (`hero-still.webp`), and the 1080p MP4 with its soundtrack is linked.
+The hero is the owner-supplied 15-second promo film (`assets/porsche/src/EXID_GitHub_15s.mp4`, gold crest intro ending on "EXID — Software Developer"), shown unedited as an animated WebP (800×450, 12 fps, every frame a keyframe, infinite loop). Reduced-motion viewers get a still frame (`hero-still.webp`), and the 1080p MP4 with its soundtrack is linked.
 
 `bash render_porsche_motion.sh` (ffmpeg) rebuilds all three hero files. Regular workflow runs reuse the committed media. `render_porsche_film.py` is the previous 24-second Porsche film pipeline (tail-light and chassis-shine effects) and is no longer used for the hero.
 
