@@ -7,6 +7,7 @@ REPO = f"https://github.com/{OWNER}/{OWNER}"
 RAW = f"https://raw.githubusercontent.com/{OWNER}/{OWNER}/output"
 root = pathlib.Path(__file__).parent
 tf = root / "theme.txt"
+PR = (root / "assets" / "photoreal" / "approved-design.png").exists()  # photoreal Elysium art present?
 mode = tf.read_text().strip() if tf.exists() else "auto"
 if mode not in ("auto", "elysium", "cyberpunk"):
     mode = "auto"
@@ -66,7 +67,12 @@ divider = lambda: ""
 
 def plate(key):
     alt = {"elysium": E, "cyberpunk": C}.get(mode, {"h": NEUTRAL})["h"][key]
-    return themed(lambda t: f"./assets/plate-{t['tag']}-{key}.svg", width="100%", alt=alt)
+    def url(t):
+        if PR and t is E:
+            return ("./assets/photoreal/blank.svg" if key == "intro" else
+                    "./assets/photoreal/section-%s.svg" % key if key in ("sns", "stack") else "./assets/photoreal/strip-%s.svg" % key)
+        return f"./assets/plate-{t['tag']}-{key}.svg"
+    return themed(url, width="100%", alt=alt)
 
 STACK = [("Java", "openjdk", 0), ("Spring_Boot", "springboot", 0), ("MyBatis", None, 0), ("Spring_AI", "spring", 0),
          ("TypeScript", "typescript", 1), ("React", "react", 1), ("Vite", "vite", 1), ("Git", "git", 0)]
@@ -107,14 +113,26 @@ def sns_badge(name, logo, href, ci):
     return f'<a href="{href}">{themed(url, alt=name)}</a>'
 
 
+PRKEY = dict(github="github", repos="repositories", stars="stars")
+
+
 def sns_tile(key, href):
-    return f'<a href="{href}">' + themed(lambda t: "./assets/sns-%s-%s.svg" % (t["tag"], key), width="32%", alt=key) + "</a>"
+    return f'<a href="{href}">' + themed(lambda t: "./assets/photoreal/%s.svg" % PRKEY[key] if (PR and t is E) else "./assets/sns-%s-%s.svg" % (t["tag"], key), width="32%", alt=key) + "</a>"
 
 
 def cta_btn(key, href):
     return f'<a href="{href}">' + themed(lambda t: "./assets/cta-%s-%s.svg" % (t["tag"], key), width="48%", alt=key) + "</a>"
 
 
+def stack_tiles():
+    if not PR:
+        return themed(lambda t: "./assets/stack-%s.svg" % t["tag"], width="100%", alt="tech stack")
+    names = ["backend", "frontend", "ai-tools"]
+    return "\n".join(themed(lambda t, i=i: "./assets/photoreal/%s.svg" % names[i] if t is E else "./assets/stack-cyber-%d.svg" % i,
+                            width="32%", alt=names[i]) for i in range(3))
+
+
+STACKIMG = stack_tiles()
 SNS = "\n  ".join([sns_tile("github", U), sns_tile("repos", U + "?tab=repositories"), sns_tile("stars", U + "?tab=stars")])
 
 out = f'''<div align="center">
@@ -127,7 +145,7 @@ out = f'''<div align="center">
 
 {plate("intro")}
 
-{themed(lambda t: "./assets/profile-%s.svg" % t["tag"], width="100%", alt="profile")}
+{themed(lambda t: "./assets/photoreal/profile.svg" if (PR and t is E) else "./assets/profile-%s.svg" % t["tag"], width="100%", alt="profile")}
 
 <p align="center">
 {text("quote")[0]}<br/>
@@ -146,7 +164,7 @@ out = f'''<div align="center">
 <summary><b>Tech Stack (click to fold)</b></summary>
 <br/>
 <p align="center">
-{themed(lambda t: "./assets/stack-%s.svg" % t["tag"], width="100%", alt="tech stack")}
+{STACKIMG}
 </p>
 </details>
 
