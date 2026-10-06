@@ -16,9 +16,14 @@ Gold-emblem profile built from the owner-supplied **EXID GitHub Promo Pack** (15
 
 Black field with faint gold circuit traces, polished gold bevels with cut corners, wine-red jewels, Cinzel capitals and wide-tracked Montserrat captions — the same vocabulary as the banner. Each panel carries a slow light sweep that is disabled for `prefers-reduced-motion`.
 
+## 3D rendering
+
+All cards are real 3D scenes rendered with Blender's real-time engine EEVEE (the same kind of renderer as Unreal Engine): moulded gold frames with polished beads over a brushed band, recessed black lacquer panels with faintly etched gold circuit traces and a warm light pool, extruded Cinzel lettering, enamel hexagons and medallions, faceted ruby jewels in gold bezels. Lighting is a procedural studio environment (softboxes and strip lights) plus bloom, screen-space reflections and ambient occlusion. Each render is embedded in an SVG of the same name, with a slow light sweep masked by the render so it only glints across the bright gold.
+
 ## Building
 
-- `python crest.py` regenerates `assets/crest/*.svg` (Python 3, Pillow, fontTools, brotli). Fonts are embedded as WOFF2 subsets, so panels render identically everywhere; Korean text falls back to the viewer's system font.
+- `xvfb-run -a blender -b -P crest_render.py -- [card ...]` renders the cards to `assets/crest/render/*.png` (Blender 4.0 EEVEE; no GPU needed, about 15 minutes for all cards on 2 CPU cores). Then `python crest.py wrap` wraps them into `assets/crest/*.svg`.
+- `python crest.py` (without `wrap`) builds the earlier flat vector versions instead (Pillow, fontTools, brotli).
 - `bash render_crest_hero.sh` rebuilds the hero (ffmpeg, Pillow, numpy).
 - `python build_readme.py` renders README.md when `theme.txt` is `crest`. Switch themes with an owner-authored `theme:crest` issue or the workflow's manual dispatch.
 

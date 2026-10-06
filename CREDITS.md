@@ -38,8 +38,8 @@
 |:--|:--|:--|
 | 홍보 영상 · 배너 · 엠블럼 원본 | `assets/porsche/src/EXID_GitHub_15s.mp4`, `EXID_GitHub_Banner.png`, `EXID_Crest_Transparent.png` | 소유자(EXID) 제공 EXID GitHub Promo Pack (15초 영상 + 전자음 사운드트랙, 가로 배너, 투명 엠블럼) |
 | 상단 히어로 | `assets/crest/hero-motion.webp`, `hero-still.webp`, `hero-film.mp4` | 영상 한 번 재생 → 투명 엠블럼이 배너의 엠블럼 자리로 이동 → 배너에서 멈추도록 Claude가 `render_hero.py`로 구성. 원본 영상 · 배너 · 엠블럼은 편집하지 않음 |
-| 소개 · 기술 스택 · 링크 · 활동 · 프로젝트 · 푸터 패널 | `assets/crest/*.svg` | 프로모 팩의 디자인(검정 바탕, 금 회로선, 금 베벨, 와인레드 보석)에 맞춰 Claude가 `crest.py`로 그린 벡터 SVG. 소개 · 푸터의 엠블럼은 위 투명 엠블럼 축소본 |
-| 서체 | `assets/crest/fonts/` | [Cinzel](https://github.com/NDISCOVER/Cinzel), [Montserrat](https://github.com/JulietaUla/Montserrat) — SIL Open Font License 1.1 (라이선스 원문 동봉). SVG 안에 필요한 글자만 넣어 사용 |
+| 소개 · 기술 스택 · 링크 · 활동 · 프로젝트 · 푸터 카드 | `assets/crest/*.svg` | 프로모 팩의 디자인(검정 바탕, 금 회로선, 금 몰딩, 와인레드 보석)에 맞춰 Claude가 Blender(EEVEE 실시간 렌더러)로 모델링 · 렌더링한 3D 카드 (`crest_render.py`), `crest.py wrap`으로 SVG에 담음. 소개 · 푸터의 엠블럼은 위 투명 엠블럼 이미지 |
+| 서체 | `assets/crest/fonts/` | [Cinzel](https://github.com/NDISCOVER/Cinzel), [Montserrat](https://github.com/JulietaUla/Montserrat) — SIL Open Font License 1.1 (라이선스 원문 동봉). 한글은 [Noto Sans CJK](https://github.com/notofonts/noto-cjk) (SIL OFL 1.1) |
 | 활동 · 언어 수치 | `activity.svg`, `languages.svg` | 2026-10-06 스냅샷 (실시간 아님). 활동 카드를 누르면 실시간 통계로 이동 |
 
 ## 공통

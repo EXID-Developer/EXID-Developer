@@ -5,7 +5,8 @@ Design language taken from the owner-supplied EXID GitHub Promo Pack: black fiel
 faint gold circuit traces, polished gold bevels, wine-red jewels, Cinzel capitals
 and wide-tracked sans-serif captions.
 
-  python crest.py          build assets/crest/*.svg (needs Pillow + fontTools + brotli)
+  python crest.py          build flat vector assets/crest/*.svg (needs Pillow + fontTools + brotli)
+  python crest.py wrap     wrap the 3D renders from crest_render.py (Blender EEVEE) into the same SVG names
   python build_readme.py   render README.md when theme.txt is "crest"
 
 Every panel is a self-contained SVG: fonts are embedded as subset WOFF2 (SIL OFL,
@@ -463,5 +464,56 @@ Java와 Spring으로 서버를 세우고, React로 화면을 그리며, Spring A
     print("README.md rendered (crest)")
 
 
+# ---------------------------------------------------------------- 3D renders
+SIZES = {"about": (1600, 470), "stack": (1600, 520), "activity": (800, 470), "languages": (800, 470), "footer": (1600, 280),
+         **{f"section-{k}": (1600, 120) for k in SECTIONS}, **{f"link-{k}": (520, 160) for k, *_ in LINKS},
+         **{f"project-{r}": (800, 380) for r, *_ in PROJECTS}}
+TITLES = {"about": "EXID — Software Developer. Java와 Spring으로 서버를 세우고, React로 화면을 그리며, Spring AI로 새로운 가능성을 실험합니다.",
+          "stack": "Tech stack — Backend: Java, Spring Boot, MyBatis. Frontend: TypeScript, React, Vite. AI & Tools: Spring AI, Git.",
+          "activity": f"Contribution snapshot {SNAPSHOT}: 114 total contributions, current streak 1, longest streak 5.",
+          "languages": "Most used languages: " + ", ".join(f"{n} {v:.2f}%" for n, v, _ in LANGS) + f". Snapshot {SNAPSHOT}.",
+          "footer": "EXID — Code. Build. Ship.",
+          **{f"section-{k}": v for k, v in SECTIONS.items()},
+          **{f"link-{k}": f"{t.title()} — {sub}" for k, t, sub, _ in LINKS},
+          **{f"project-{r}": f"{r} — {l}. {d} Open repository." for r, l, d in PROJECTS}}
+
+
+def wrap():
+    """Wrap the Blender/EEVEE renders (assets/crest/render/*.png, from crest_render.py) in SVGs.
+
+    The render is embedded once as WebP; a slow specular sweep is masked by the render
+    itself, so it only glints across bright gold and never over the dark panels."""
+    from PIL import Image
+    n = 0
+    for name, (w, h) in SIZES.items():
+        src = OUT / "render" / f"{name}.png"
+        if not src.exists():
+            print("missing render:", name)
+            continue
+        im = Image.open(src).convert("RGBA")
+        buf = io.BytesIO()
+        im.save(buf, "WEBP", quality=90, method=6)
+        b64 = base64.b64encode(buf.getvalue()).decode()
+        sweep = name.startswith(("project-", "link-", "activity", "languages", "stack", "about"))
+        anim = ""
+        if sweep:
+            anim = (f'<mask id="m" maskUnits="userSpaceOnUse" x="0" y="0" width="{w}" height="{h}"><use href="#r"/></mask>'
+                    f'<linearGradient id="s" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff4d6" stop-opacity="0"/>'
+                    f'<stop offset=".5" stop-color="#fff4d6" stop-opacity=".55"/><stop offset="1" stop-color="#fff4d6" stop-opacity="0"/></linearGradient>')
+        body = '<use href="#r"/>'
+        if sweep:
+            body += (f'<g mask="url(#m)" style="mix-blend-mode:screen"><rect class="sw" x="{-w * .45}" y="0" width="{w * .22}" height="{h}" '
+                     f'fill="url(#s)" transform="skewX(-20)"/></g>')
+        css = (f"@keyframes sw{{0%,25%{{transform:translateX(0) skewX(-20deg)}}75%,100%{{transform:translateX({w * 1.7:.0f}px) skewX(-20deg)}}}}"
+               ".sw{animation:sw 9s ease-in-out infinite}@media (prefers-reduced-motion:reduce){.sw{animation:none;opacity:0}}") if sweep else ""
+        svg = (f'<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="{w}" height="{h}" '
+               f'viewBox="0 0 {w} {h}" role="img"><title>{escape(TITLES[name])}</title><defs>'
+               f'<image id="r" width="{w}" height="{h}" href="data:image/webp;base64,{b64}"/>{anim}<style>{css}</style></defs>{body}</svg>')
+        (OUT / f"{name}.svg").write_text(svg, encoding="utf-8")
+        n += 1
+    print(f"Wrapped {n} renders into SVG")
+
+
 if __name__ == "__main__":
-    build()
+    import sys
+    wrap() if "wrap" in sys.argv[1:] else build()
