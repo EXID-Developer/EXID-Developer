@@ -109,6 +109,8 @@ Java와 Spring으로 서버를 세우고, React로 화면을 그리며, Spring A
 
 <p align="center">{switches()}</p>
 
+<p align="center"><a href="./CREDITS.md">Credits · 이미지 출처</a> · <a href="./PORSCHE_THEME.md">Porsche 이미지·영상 제작 방식</a></p>
+
 <p align="center"><sub>Theme switch: 저장소 소유자가 이슈를 제출하면 테마가 변경됩니다.</sub></p>
 '''
  (ROOT/'README.md').write_text(s,encoding='utf-8')

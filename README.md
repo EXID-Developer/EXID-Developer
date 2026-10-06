@@ -59,4 +59,6 @@ Java와 Spring으로 서버를 세우고, React로 화면을 그리며, Spring A
 
 <p align="center"><a href="https://github.com/EXID-Developer/EXID-Developer/issues/new?title=theme%3Aauto&body=Submit+to+switch+the+profile+theme."><img src="https://img.shields.io/badge/AUTO-switch-8FD3FF?style=flat-square&amp;labelColor=17191D" alt="AUTO"/></a> <a href="https://github.com/EXID-Developer/EXID-Developer/issues/new?title=theme%3Aelysium&body=Submit+to+switch+the+profile+theme."><img src="https://img.shields.io/badge/ELYSIUM-switch-F5D78E?style=flat-square&amp;labelColor=17191D" alt="ELYSIUM"/></a> <a href="https://github.com/EXID-Developer/EXID-Developer/issues/new?title=theme%3Acyberpunk&body=Submit+to+switch+the+profile+theme."><img src="https://img.shields.io/badge/CYBERPUNK-switch-FF2BD6?style=flat-square&amp;labelColor=17191D" alt="CYBERPUNK"/></a> <a href="https://github.com/EXID-Developer/EXID-Developer/issues/new?title=theme%3Aporsche&body=Submit+to+switch+the+profile+theme."><img src="https://img.shields.io/badge/PORSCHE-active-D73636?style=flat-square&amp;labelColor=17191D" alt="PORSCHE"/></a></p>
 
+<p align="center"><a href="./CREDITS.md">Credits · 이미지 출처</a> · <a href="./PORSCHE_THEME.md">Porsche 이미지·영상 제작 방식</a></p>
+
 <p align="center"><sub>Theme switch: 저장소 소유자가 이슈를 제출하면 테마가 변경됩니다.</sub></p>

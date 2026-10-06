@@ -1,0 +1,43 @@
+# Credits · 이미지 출처
+
+이 프로필 README에 쓰인 이미지와 위젯의 출처를 정리한 문서입니다.
+
+## Elysium (천족) 테마
+
+| 구성 요소 | 파일 | 출처 |
+|:--|:--|:--|
+| 포토리얼 카드 원본 | `assets/photoreal/approved-design.png` | ChatGPT(GPT) 이미지 생성으로 만든 이미지 (소유자 EXID 제공) |
+| 포토리얼 카드 (프로필 · SNS 3종 · 스택 3종) | `assets/photoreal/*.svg` | 위 원본을 카드별로 잘라 사용. 빛 · 반짝임 · 광택 애니메이션은 Claude가 `photoreal.py`로 추가 |
+| 상단 영상 배너 | `assets/hero-elysium.webp` | 소유자 제공 영상 `EXID_cinematic_v2.mp4`를 애니메이션 WebP로 변환 (영상이 끝나면 정지 이미지로 전환) |
+| 천사 캐릭터 | `assets/src/elysium/image.png`, `assets/src/char-elysium.webp` | 소유자 제공 오리지널 캐릭터 이미지. 배경 제거 후 배너에 합성 |
+| 04~06 구분선 | `assets/photoreal/strip-*.svg` | Claude가 Python으로 생성한 SVG |
+
+## Cyberpunk 테마
+
+| 구성 요소 | 파일 | 출처 |
+|:--|:--|:--|
+| 포토리얼 카드 원본 | `assets/photoreal-cyber/approved-design.png` | ChatGPT(GPT) 이미지 생성으로 만든 이미지 (소유자 EXID 제공) |
+| 포토리얼 카드 (프로필 · SNS 3종 · 스택 3종) | `assets/photoreal-cyber/*.svg` | 위 원본을 카드별로 잘라 사용. 빛 · 반짝임 · 광택 애니메이션은 Claude가 `photoreal.py`로 추가 |
+| 넷러너 캐릭터 | `assets/src/cyber/image.png`, `assets/src/char-cyber.webp` | 소유자 제공 오리지널 캐릭터 이미지. 배경 제거 후 배너에 합성 |
+| 히어로 · 푸터 · 구분선 | `assets/hero-cyber.svg` 등 | Claude가 Python으로 생성한 SVG |
+| 04~06 구분선 | `assets/photoreal-cyber/strip-*.svg` | Claude가 Python으로 생성한 SVG |
+
+## 공통
+
+| 구성 요소 | 출처 |
+|:--|:--|
+| 히어로 · 푸터 · 구분선 · SNS / 스택 / CTA 카드 · 실시간 숫자 스트립 | Claude가 Python(`build_assets.py`, `cyber.py`, `cards.py`, `livestat.py`)으로 만든 SVG. 저장소의 GitHub Actions가 자동 생성 |
+| 캐릭터 배경 제거 | [rembg](https://github.com/danielgatis/rembg) (`isnet-anime` 모델) |
+| 컨트리뷰션 스네이크 | [Platane/snk](https://github.com/Platane/snk) |
+| 타이핑 문구 | [DenverCoder1/readme-typing-svg](https://github.com/DenverCoder1/readme-typing-svg) |
+| GitHub 통계 카드 | [anuraghazra/github-readme-stats](https://github.com/anuraghazra/github-readme-stats) |
+| 스트릭 통계 | [DenverCoder1/github-readme-streak-stats](https://github.com/DenverCoder1/github-readme-streak-stats) |
+| 배지 | [shields.io](https://shields.io) |
+| 방문자 수 | [komarev.com/ghpvc](https://komarev.com/ghpvc/) |
+| 서체 | Cinzel, Share Tech Mono (Google Fonts, SIL Open Font License). 이미지 안의 글자는 서체가 없는 환경에서는 기본 서체로 대체됩니다. |
+
+## 안내
+
+- AI로 생성된 이미지가 포함되어 있습니다 (위 표의 "ChatGPT(GPT) 이미지 생성" 항목).
+- 테마는 게임 · 애니메이션 분위기에서 영감을 받은 개인 팬 스타일입니다. 공식 에셋을 사용하지 않았고, 원작 제작사와 관련이 없습니다.
+- 영상 배너와 캐릭터 이미지는 소유자가 제공했으며, 제작 도구는 기록되어 있지 않습니다. 확인되면 이 문서에 추가합니다.
